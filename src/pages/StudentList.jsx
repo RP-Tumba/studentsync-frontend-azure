@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import useStudentStore from "../store/studentStore";
+import useStudentStore from '../store/studentStore';
 
 const StudentList = () => {
   // eslint-disable-next-line no-unused-vars
