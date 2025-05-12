@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import StudentList from "./pages/StudentList";
 import "./App.css";
 
+
 const App = () => {
   return (
     <Router>
@@ -11,6 +12,7 @@ const App = () => {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<StudentList />} />
+            
           </Routes>
         </main>
       </div>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import useStudentStore from "../store/studentStore";
+import Addstudent from "./Add_student";
 
 const StudentList = () => {
   // eslint-disable-next-line no-unused-vars
@@ -13,7 +14,10 @@ const StudentList = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
-  return <div>Student List</div>;
+  return( <><div>Student List</div>
+            <Addstudent/>
+  </>);
+
 };
 
 export default StudentList;
