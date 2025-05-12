@@ -1,44 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import "./styles/StudentProfile.css";
 import pro from "../assets/pro.png";
 
-const FormInput = ({ label, name, value, onChange, type = "text" }) => (
+const FormInput = ({ label, name, type = "text" }) => (
   <div className="form-group">
     <label htmlFor={name}>{label}</label>
-    <input
-      type={type}
-      id={name}
-      name={name}
-      value={value}
-      onChange={onChange}
-      required
-    />
+    <input type={type} id={name} name={name} required />
   </div>
 );
 
 const StudentProfileForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    studentId: "",
-    dob: "",
-    enrollmentDate: "",
-    email: "",
-    contactNumber: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+
+    const formData = {
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      studentId: form.studentId.value,
+      dob: form.dob.value,
+      enrollmentDate: form.enrollmentDate.value,
+      email: form.email.value,
+      contactNumber: form.contactNumber.value,
+    };
+    form.reset();
+
     console.log("Submitted Student Data:", formData);
     alert("Form submitted!");
   };
@@ -58,6 +46,7 @@ const StudentProfileForm = () => {
           />
         </div>
       </div>
+
       <div className="content">
         <div className="part3">
           <div className="details">
@@ -72,57 +61,25 @@ const StudentProfileForm = () => {
           <form onSubmit={handleSubmit}>
             <div className="form-columns">
               <div className="form-left">
-                <FormInput
-                  label="First Name"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                />
-                <FormInput
-                  label="Student ID"
-                  name="studentId"
-                  value={formData.studentId}
-                  onChange={handleChange}
-                />
+                <FormInput label="First Name" name="firstName" />
+                <FormInput label="Student ID" name="studentId" />
                 <FormInput
                   label="Enrollment Date"
                   name="enrollmentDate"
                   type="date"
-                  value={formData.enrollmentDate}
-                  onChange={handleChange}
                 />
-                <FormInput
-                  label="Contact Number"
-                  name="contactNumber"
-                  value={formData.contactNumber}
-                  onChange={handleChange}
-                />
+                <FormInput label="Contact Number" name="contactNumber" />
               </div>
 
               <div className="form-right">
-                <FormInput
-                  label="Last Name"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                />
-                <FormInput
-                  label="Date of Birth"
-                  name="dob"
-                  type="date"
-                  value={formData.dob}
-                  onChange={handleChange}
-                />
-                <FormInput
-                  label="Email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
+                <FormInput label="Last Name" name="lastName" />
+                <FormInput label="Date of Birth" name="dob" type="date" />
+                <FormInput label="Email" name="email" type="email" />
               </div>
 
-              <button className="but1">Edit</button>
+              <button className="but1" type="submit">
+                Edit
+              </button>
             </div>
           </form>
 
