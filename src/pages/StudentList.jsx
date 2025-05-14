@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import '../components/Navbar.css';
+import SyncIcon from '@mui/icons-material/Sync';
 import './style/StudentList.css';
 import useStudentStore from '../store/studentStore';
 import { studentService } from '../lib/api';
