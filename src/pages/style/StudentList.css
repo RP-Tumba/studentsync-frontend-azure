@@ -191,8 +191,6 @@ position: fixed;
 .overlay{
   background-color: rgba(49, 49, 49, 0.8);
 }
-
-
 .close-modal{
   position: absolute;
   top: 10px;
@@ -200,7 +198,6 @@ position: fixed;
   padding: 5px 7px;
   background-color: red;
 }
-
 
 .proPic{
   width: 7%;

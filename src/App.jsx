@@ -4,6 +4,7 @@ import StudentList from './pages/StudentList';
 // import FormIt from './pages/form';
 import './App.css';
 
+
 const App = () => {
   return (
 
@@ -14,6 +15,7 @@ const App = () => {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<StudentList />} />
+            
           </Routes>
         </main>
       </div>
