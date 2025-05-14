@@ -1,27 +1,25 @@
-import { useEffect, useState } from "react";
-import useStudentStore from "../store/studentStore";
-import { studentService } from "../lib/api";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import useStudentStore from '../store/studentStore';
+import { studentService } from '../lib/api';
+import { useNavigate } from 'react-router-dom';
 
 const StudentList = () => {
-  const { students, loading, error } = useStudentStore();
+  const { loading, error } = useStudentStore();
   const [fetchStudent, setFetchStudent] = useState([]);
   const navigate = useNavigate();
 
-  const handleUpdate = (data) => {
-    navigate("/student-profile", { state: { studentData: data } });
+  const handleUpdate = data => {
+    navigate('/student-profile', { state: { studentData: data } });
   };
 
-  const handleDelete = async (studentId) => {
+  const handleDelete = async studentId => {
     try {
       await studentService.deleteStudent(studentId);
-      setFetchStudent((prevStudents) =>
-        prevStudents.filter((student) => student.id !== studentId),
-      );
-      alert("Student deleted successfully");
+      setFetchStudent(prevStudents => prevStudents.filter(student => student.id !== studentId));
+      alert('Student deleted successfully');
     } catch (err) {
-      console.error("Error deleting student", err);
-      alert("Failed to delete student");
+      console.error('Error deleting student', err);
+      alert('Failed to delete student');
     }
   };
 
@@ -31,13 +29,13 @@ const StudentList = () => {
         const { data } = await studentService.getAllStudents();
         setFetchStudent(data);
       } catch (err) {
-        console.error("Error fetching students", err);
-        alert("Failed to fetch students");
+        console.error('Error fetching students', err);
+        alert('Failed to fetch students');
       }
     };
 
     fetchStudents();
-  }, [students]);
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -56,7 +54,7 @@ const StudentList = () => {
           </tr>
         </thead>
         <tbody>
-          {fetchStudent.map((data) => (
+          {fetchStudent.map(data => (
             <tr key={data.id}>
               <td>{data.firstName}</td>
               <td>{data.lastName}</td>
