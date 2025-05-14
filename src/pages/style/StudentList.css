@@ -45,7 +45,6 @@
 h1 {
   margin-top: 12px;
 }
-
 .dd {
   font-size: 32px;
   font-weight: bold;
@@ -113,7 +112,6 @@ h1 {
     padding: 10px 20px;
   }
 }
-
 @media (max-width: 720px) {
   .leftbar {
     right: 0;
@@ -150,3 +148,64 @@ h1 {
     background-color: transparent;
   }
 }
+/*trying out something*/
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+.modal-content{
+  border:1px solid black;
+  width:30%;
+  position: absolute;
+  right: 30rem;
+  top: 4rem;
+  height: 60%;
+  border-radius: 12px;
+  background-color: aquamarine;
+  box-shadow: inset;
+
+}
+
+.modal-content input{
+position: absolute;
+left: 10em;
+padding: 10px 10px;
+margin-top: 62px;
+border-radius: 8px;
+width: 50%;
+border: none;
+
+}
+ .modal, .overlay{
+left: 0;
+right: 0;
+bottom: 0;
+top: 0;
+width: 100vw;
+height: 100vh;
+position: fixed;
+}
+
+.overlay{
+  background-color: rgba(49, 49, 49, 0.8);
+}
+
+
+.close-modal{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+  background-color: red;
+}
+
+
+.proPic{
+  width: 7%;
+  height: 5%;
+  border-radius: 16px;
+  float: left;
+}
+

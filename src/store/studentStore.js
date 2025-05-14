@@ -34,7 +34,7 @@ const useStudentStore = create((set, get) => ({
   addStudent: async studentData => {
     set({ loading: true, error: null });
     // implementation goes here
-  },
+    },
 
   // Update student
   updateStudent: async (id, studentData) => {

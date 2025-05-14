@@ -1,10 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import StudentList from './pages/StudentList';
+// import FormIt from './pages/form';
 import './App.css';
 
 const App = () => {
   return (
+
+    <>
     <Router>
       <div className="app-container">
         <Navbar />
@@ -15,6 +18,8 @@ const App = () => {
         </main>
       </div>
     </Router>
+    {/* <FormIt /> */}
+    </>
   );
 };
 
