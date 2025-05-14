@@ -60,10 +60,11 @@ nav{
     .links.menu{
         display:inline-block;
         position: absolute;
-        width: 100px;
+        width: 130px;
+        border-radius: 12px;
         margin-top: 37px;
         backdrop-filter: blur(40px);
-        right: 44px;
+        right: 18px;
     }
     .icon{
         display: contents;

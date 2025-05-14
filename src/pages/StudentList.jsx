@@ -52,8 +52,13 @@ const StudentList = () => {
       student.lastName.toLowerCase().includes(query)
     );
   });
+  if (loading)
+    return (
+      <div className="loading">
+        <SyncIcon />
+      </div>
+    );
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   const mssg = 'NO RESULT FOUND ☹☹';
@@ -136,5 +141,4 @@ const StudentList = () => {
     </>
   );
 };
-
 export default StudentList;
