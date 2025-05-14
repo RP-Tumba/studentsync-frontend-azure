@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import StudentList from "./pages/StudentList";
-
-import StudentProfile from "./pages/StudentProfile";
+import StudentProfileForm from "./pages/StudentProfile";
 
 const App = () => {
   return (
@@ -12,7 +11,7 @@ const App = () => {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<StudentList />} />
-            <Route path="/student-profile" element={<StudentProfile />} />
+            <Route path="/student-profile" element={<StudentProfileForm />} />
           </Routes>
         </main>
       </div>
