@@ -1,5 +1,8 @@
 import "./Add_student.css";
-import PanoramaPhotosphereIcon from '@mui/icons-material/PanoramaPhotosphere';
+// import { useState } from "react";
+
+
+// import PanoramaPhotosphereIcon from '@mui/icons-material/PanoramaPhotosphere';
 
 const Addstudent = () => {
   return (
@@ -10,7 +13,8 @@ const Addstudent = () => {
        
         <div className="final-title">
           <div className="handle-title">
-            <PanoramaPhotosphereIcon />
+            {/* <PanoramaPhotosphereIcon /> */}
+            <img src="public/title.png" className="handle-picture" alt="wait" />
             <p className="set-position">STUDENTSYNC</p>
           </div>
           <p >Add new student</p>

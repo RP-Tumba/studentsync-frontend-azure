@@ -20,7 +20,8 @@
 }
 
 .add-color {
-  background-color: #5b5b5b;
+  /* background-image: linear-gradient(to  right, rgb(244, 240, 240),red); */
+  background-color: grey;
   padding: 100px;
   font-size: 10px;
 }
@@ -79,4 +80,9 @@
 }
 .date-birth{
     width: 163px;
+}
+.handle-picture{
+
+  width: 40px;
+  height: 40px;
 }
