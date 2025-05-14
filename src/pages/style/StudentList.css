@@ -1,0 +1,217 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  padding: 10px;
+  margin-top: 50px;
+  margin: 2rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftbar {
+  display: flex;
+  align-content: right;
+  justify-content: space-between;
+  right: 0;
+  gap: 5rem;
+  width: 50%;
+  padding-right: 2%;
+}
+
+.search {
+  display: flex;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  width: 60%;
+  align-items: center;
+  padding: 10px;
+}
+.search input[type='text'] {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: black;
+  width: 100%;
+  height: 110%;
+  font-size: 15px;
+}
+
+h1 {
+  margin-top: 12px;
+}
+.dd {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.add {
+  background-color: #83c727;
+padding-bottom: 30px;
+display: flex;
+font-weight: bold;
+text-align: center;
+padding-top: 22px;
+  border-radius: 12px;
+  justify-items: center;
+  width: 180px;
+  border: none;
+  height: 52px;
+  padding: 22px;
+    color: white;
+ 
+}
+
+.thead {
+  background-color: #ebf3e1;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+
+table tr td {
+  padding: 20px;
+  border-bottom: 1px solid;
+}
+
+h1 {
+  color: #83c727;
+  font-size: 32px;
+}
+.but1 {
+  display: flex;
+  align-items: center;
+ 
+  padding: 10px 30px;
+  border: none;
+  
+}
+
+
+
+@media (max-width: 1000px) {
+  .leftbar {
+    gap: 2rem;
+    width: 70%;
+    padding-right: 0%;
+  }
+}
+
+@media (max-width: 840px) {
+  .leftbar {
+    right: 0;
+    gap: 1rem;
+    width: 70%;
+  }
+
+  .but1 {
+    padding: 10px 20px;
+  }
+}
+@media (max-width: 720px) {
+  .leftbar {
+    right: 0;
+    gap: 1rem;
+    width: 70%;
+  }
+
+  .but1{
+    padding: 10px 10px;
+  }
+}
+
+@media (max-width: 660px) {
+  .leftbar {
+    display: block;
+  }
+
+  .top {
+    display: block;
+  }
+  .search input[type='text'] {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: black;
+    border-radius: 12px;
+  }
+  .search {
+    width: 100%;
+  }
+  .add {
+    padding-left: 40%;
+    padding-top: 10%;
+    background-color: transparent;
+  }
+}
+/*trying out something*/
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+.modal-content{
+  border:1px solid black;
+  width:30%;
+  position: absolute;
+  right: 30rem;
+  top: 4rem;
+  height: 60%;
+  border-radius: 12px;
+  background-color: aquamarine;
+  box-shadow: inset;
+
+}
+
+.modal-content input{
+position: absolute;
+left: 10em;
+padding: 10px 10px;
+margin-top: 62px;
+border-radius: 8px;
+width: 50%;
+border: none;
+
+}
+ .modal, .overlay{
+left: 0;
+right: 0;
+bottom: 0;
+top: 0;
+width: 100vw;
+height: 100vh;
+position: fixed;
+}
+
+.overlay{
+  background-color: rgba(49, 49, 49, 0.8);
+}
+.close-modal{
+  
+  top: 108px;
+  right: 620px;
+  padding: 5px 10px;
+  background-color: red;
+}
+
+.proPic{
+  width: 7%;
+  height: 5%;
+  border-radius: 16px;
+  float: left;
+}
+.ed{
+  color: green;
+}
+.de{
+  color: red;
+}

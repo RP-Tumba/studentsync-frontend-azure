@@ -1,12 +1,32 @@
 import { useEffect, useState } from 'react';
+import './style/StudentList.css';
 import useStudentStore from '../store/studentStore';
 import { studentService } from '../lib/api';
 import { useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Addstudent from './Add_student.jsx';
 
 const StudentList = () => {
-  const { loading, error } = useStudentStore();
-  const [fetchStudent, setFetchStudent] = useState([]);
   const navigate = useNavigate();
+  const { students, fetchStudents, loading, error } = useStudentStore();
+
+  const [search, setSearch] = useState('');
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    fetchStudents();
+  }, [fetchStudents]);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const handleChange = e => {
+    setSearch(e.target.value);
+  };
 
   const handleUpdate = data => {
     navigate('/student-profile', { state: { studentData: data } });
@@ -15,7 +35,7 @@ const StudentList = () => {
   const handleDelete = async studentId => {
     try {
       await studentService.deleteStudent(studentId);
-      setFetchStudent(prevStudents => prevStudents.filter(student => student.id !== studentId));
+      fetchStudents(); // Refresh the list after deletion
       alert('Student deleted successfully');
     } catch (err) {
       console.error('Error deleting student', err);
@@ -23,52 +43,95 @@ const StudentList = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const { data } = await studentService.getAllStudents();
-        setFetchStudent(data);
-      } catch (err) {
-        console.error('Error fetching students', err);
-        alert('Failed to fetch students');
-      }
-    };
-
-    fetchStudents();
-  }, []);
+  const filteredStudents = students.filter(student => {
+    const query = search.trim().toLowerCase();
+    return (
+      student.firstName.toLowerCase().includes(query) ||
+      student.lastName.toLowerCase().includes(query)
+    );
+  });
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  const mssg = 'NO RESULT FOUND ☹☹';
+  const imgS = './src/assets/ron.jpg';
+
   return (
-    <div>
-      <h2>Student List</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Student ID</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {fetchStudent.map(data => (
-            <tr key={data.id}>
-              <td>{data.firstName}</td>
-              <td>{data.lastName}</td>
-              <td>{data.studentId}</td>
-              <td>{data.email}</td>
-              <td>
-                <button onClick={() => handleDelete(data.id)}>Delete</button>
-                <button onClick={() => handleUpdate(data)}>Update</button>
-              </td>
+    <>
+      <div className="container">
+        <div className="top">
+          <h1>All Students</h1>
+          <div className="leftbar">
+            <section className="search">
+              <SearchIcon className="ii" />
+              &nbsp;&nbsp;
+              <input
+                type="text"
+                name="Search"
+                id=""
+                placeholder="Search"
+                value={search}
+                onChange={handleChange}
+              />
+            </section>
+
+            <button className="add" onClick={toggleModal}>
+              {' '}
+              <AddIcon className="ic" /> &nbsp; Add Student <br />
+            </button>
+          </div>
+        </div>
+        <br />
+        <br />
+        <table className="tables" cellSpacing={0}>
+          <thead>
+            <tr className="thead">
+              <th>User name</th>
+              <th>Student ID</th>
+              <th>Enrollment date</th>
+              <th>Status</th>
+              <th colSpan={2}>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {filteredStudents.length > 0 ? (
+              filteredStudents.map(item => (
+                <tr key={item.id}>
+                  <td>
+                    <img src={imgS} alt="" className="proPic" />
+                    {item.firstName + ' ' + item.lastName}
+                  </td>
+                  <td>{item.studentId}</td>
+                  <td>{item.enrollmentDate}</td>
+                  <td>Enrolled</td>
+                  <td>
+                    <EditIcon className="ed" onClick={() => handleUpdate(item)} />
+                  </td>
+                  <td>
+                    <DeleteIcon className="de" onClick={() => handleDelete(item.id)} />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="dd">
+                  {mssg}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {modal && (
+        <div className="modal">
+          <div className="overlay">
+            <Addstudent />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
