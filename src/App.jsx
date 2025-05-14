@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import StudentList from "./pages/StudentList";
-import "./App.css";
+// import "./App.css";
+import LandingPage from "./pages";
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
         <Navbar />
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<StudentList />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/list" element={<StudentList />} />
           </Routes>
         </main>
       </div>
