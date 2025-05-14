@@ -91,10 +91,10 @@ const imgS = './src/assets/ron.jpg';
                   <td>{item.enrollmentDate}</td>
                   <td>Enrolled</td>
                   <td>
-                    <EditIcon />
+                    <EditIcon className='ed' />
                   </td>
                   <td>
-                    <DeleteIcon />
+                    <DeleteIcon className='de' />
                   </td>
                 </tr>
               ))

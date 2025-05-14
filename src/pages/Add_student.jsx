@@ -5,10 +5,6 @@ import "./Add_student.css";
 // import PanoramaPhotosphereIcon from '@mui/icons-material/PanoramaPhotosphere';
 
 const Addstudent = () => {
-
-  const toggleModel =  () => {
-    setModal(!modal);
-}
   return (
 
     <div className="add-color">
@@ -58,7 +54,6 @@ const Addstudent = () => {
             <button className="button-color">Cancel</button>
           </div>
         </div>
-        <button type='button' className='close-modal' onClick={toggleModel}>X</button>
       </form>
     </div>
     
