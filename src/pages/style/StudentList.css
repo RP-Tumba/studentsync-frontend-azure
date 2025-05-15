@@ -211,7 +211,9 @@ position: fixed;
 }
 .ed{
   color: green;
+  cursor: pointer;
 }
 .de{
   color: red;
+  cursor: pointer;
 }

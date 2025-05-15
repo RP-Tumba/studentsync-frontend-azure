@@ -4,7 +4,7 @@ import SyncIcon from '@mui/icons-material/Sync';
 import './style/StudentList.css';
 import useStudentStore from '../store/studentStore';
 import { studentService } from '../lib/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -13,10 +13,13 @@ import Addstudent from './Add_student.jsx';
 
 const StudentList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { students, fetchStudents, loading, error } = useStudentStore();
+  const myMsg = location.state?.myMsg;
 
   const [search, setSearch] = useState('');
   const [modal, setModal] = useState(false);
+  const [msgDisplay, setMessageDisplay] = useState(true);
 
   useEffect(() => {
     fetchStudents();
@@ -36,9 +39,12 @@ const StudentList = () => {
 
   const handleDelete = async studentId => {
     try {
-      await studentService.deleteStudent(studentId);
-      fetchStudents(); // Refresh the list after deletion
-      alert('Student deleted successfully');
+      const data = studentService.deleteStudent(studentId);
+      if (data) {
+        console.log(studentId);
+      } else {
+        alert('Something went wrong');
+      }
     } catch (err) {
       console.error('Error deleting student', err);
       alert('Failed to delete student');
@@ -52,6 +58,14 @@ const StudentList = () => {
       student.lastName.toLowerCase().includes(query)
     );
   });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessageDisplay(myMsg);
+      navigate(location.pathname, { replace: true });
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [myMsg, navigate, location]);
   if (loading)
     return (
       <div className="loading">
@@ -66,6 +80,12 @@ const StudentList = () => {
 
   return (
     <>
+      {msgDisplay == true && myMsg ? (
+        <p className="update-msg">{myMsg}</p>
+      ) : (
+        <p className="update-none">{msgDisplay}</p>
+      )}
+
       <div className="container">
         <div className="top">
           <h1>All Students</h1>

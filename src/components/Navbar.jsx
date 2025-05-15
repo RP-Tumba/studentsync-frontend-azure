@@ -22,7 +22,9 @@ const Navbar = () => {
         <Link to="/">
           <button className="button-3">Home</button>
         </Link>{' '}
-        <button className="button-1">Add Student</button>
+        <Link to="/pages">
+          <button className="button-1">Add Student</button>
+        </Link>
         <Link to="/pages">
           <button className="button-2">All Students</button>
         </Link>

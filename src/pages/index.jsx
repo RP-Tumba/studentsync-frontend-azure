@@ -10,6 +10,7 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Link } from 'react-router-dom';
 const LandingPage = () => {
   return (
     <>
@@ -24,7 +25,9 @@ const LandingPage = () => {
             <div className="buttons">
               <div className="btn-f">
                 <button className="btn bg-white">Learn More</button>
-                <button className="btn bg-green">All Students</button>
+                <Link to="/pages">
+                  <button className="btn bg-green">All Students</button>
+                </Link>
               </div>
             </div>
           </div>

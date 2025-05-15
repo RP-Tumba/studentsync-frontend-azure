@@ -165,7 +165,6 @@ export const studentService = {
       };
     }
   },
-
   deleteStudent: async id => {
     try {
       const { error } = await supabase.from('students').delete().eq('student_id', id);
