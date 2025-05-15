@@ -22,8 +22,6 @@ const StudentList = () => {
     const toggleModel =  () => {
         setModal(!modal);
     }
-
-
   const handleChange = e => {
     setSearch(e.target.value);
   };
@@ -106,7 +104,7 @@ const imgS = './src/assets/ron.jpg';
               </tr>
             )}
           </tbody>
-        </table>
+        </table><br />
       </div>
             {modal && (
             <div className="modal">
@@ -118,9 +116,6 @@ const imgS = './src/assets/ron.jpg';
             )}
     </>
   );
-  return( <><div>Student List</div>
-            {/* <Addstudent/> */}
-  </>);
 
 };
 

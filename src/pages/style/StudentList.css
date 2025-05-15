@@ -211,3 +211,8 @@ position: fixed;
 .de{
   color: red;
 }
+
+.pa{
+  background-color: green;
+  width: 2%;
+}
