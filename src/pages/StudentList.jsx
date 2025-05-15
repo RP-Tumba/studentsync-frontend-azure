@@ -37,11 +37,13 @@ const StudentList = () => {
     navigate('/student-profile', { state: { studentData: data } });
   };
 
+  // DELETE FUNCTION DONE
   const handleDelete = async studentId => {
     try {
-      const data = studentService.deleteStudent(studentId);
+      const data = await studentService.deleteStudent(studentId);
       if (data) {
-        console.log(studentId);
+        console.log(data);
+        window.location.reload();
       } else {
         alert('Something went wrong');
       }
@@ -136,7 +138,7 @@ const StudentList = () => {
                     <EditIcon className="ed" onClick={() => handleUpdate(item)} />
                   </td>
                   <td>
-                    <DeleteIcon className="de" onClick={() => handleDelete(item.id)} />
+                    <DeleteIcon className="de" onClick={() => handleDelete(item.studentId)} />
                   </td>
                 </tr>
               ))
