@@ -4,7 +4,7 @@ import './App.css';
 import FooterPart from './pages/Footer.jsx';
 import Navbar from './components/Navbar';
 import StudentList from './pages/StudentList';
-// import "./App.css";
+
 import LandingPage from './pages';
 
 const App = () => {
