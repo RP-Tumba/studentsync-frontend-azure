@@ -1,62 +1,156 @@
-import "./style/Add_student.css";
-// import { useState } from "react";
-
-
-// import PanoramaPhotosphereIcon from '@mui/icons-material/PanoramaPhotosphere';
-
+import './style/Add_student.css';
+import { studentService } from '../lib/api';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Addstudent = () => {
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+  const location = useLocation();
+  const studentData = location.state?.studentData;
+
+  const [formValues, setFormValues] = useState(studentData || {});
+
+  const handleSubmit = e => {
+    const { name, value } = e.target;
+    setFormValues(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmits = async e => {
+    e.preventDefault();
+    console.log('submitted datas are: ', formValues);
+
+    try {
+      const result = await studentService.createStudent(formValues);
+      if (result.success) {
+        console.log('Added succefully');
+        navigate(-1); // redirect or update UI
+      } else {
+        alert('Error: ' + result.message);
+      }
+    } catch (err) {
+      console.error('Submission failed:', err);
+      alert('Submission failed');
+    }
+  };
+
   return (
-
     <div className="add-color">
-      <form className="handle-full-color">
-
+      <form onSubmit={handleSubmits} className="handle-full-color">
         <div className="final-title">
           <div className="handle-title">
             {/* <PanoramaPhotosphereIcon /> */}
             <img src="public/title.png" className="handle-picture" alt="wait" />
             <p className="set-position">STUDENTSYNC</p>
           </div>
-          <p >Add new student</p>
+          <p>Add new student</p>
         </div>
 
-       
         <div className="form-body">
           <div className="handle-display">
             <div>
-              <label htmlFor="firstName">First name</label><br />
-              <input type="text" id="firstName" className="handle-size-form" />
+              <label htmlFor="firstName">First name</label>
+              <br />
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                className="handle-size-form"
+                value={formValues.firstName}
+                onChange={handleSubmit}
+              />
             </div>
             <div>
-              <label htmlFor="lastName">Last name</label><br />
-              <input type="text" id="lastName" className="handle-size-form" />
+              <label htmlFor="lastName">Last name</label>
+              <br />
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                className="handle-size-form"
+                value={formValues.lastName}
+                onChange={handleSubmit}
+              />
             </div>
             <div>
-              <label htmlFor="dob">Date Of Birth</label><br />
-              <input type="date" id="dob" className="handle-size-form date-birth" />
+              <label htmlFor="dob">Date Of Birth</label>
+              <br />
+              <input
+                type="date"
+                id="dob"
+                name="dateOfBirth"
+                className="handle-size-form date-birth"
+                value={formValues.dob}
+                onChange={handleSubmit}
+              />
             </div>
             <div>
-              <label htmlFor="studentId">Student ID</label><br />
-              <input type="number" id="studentId" className="handle-size-form" />
+              <label htmlFor="studentId">Student ID</label>
+              <br />
+              <input
+                type="number"
+                id="studentId"
+                name="studentId"
+                className="handle-size-form"
+                value={formValues.studentId}
+                onChange={handleSubmit}
+              />
             </div>
-          </div><br />
+          </div>
+          <br />
 
-          <label htmlFor="email">Email</label><br />
-          <input type="email" id="email" className="handle-size" /><br /><br />
+          <label htmlFor="email">Email</label>
+          <br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="handle-size"
+            value={formValues.email}
+            onChange={handleSubmit}
+          />
+          <br />
+          <br />
 
-          <label htmlFor="contact">Contact number</label><br />
-          <input type="number" id="contact" className="handle-size" /><br /><br />
+          <label htmlFor="contact">Contact number</label>
+          <br />
+          <input
+            type="number"
+            id="contact"
+            name="contactNumber"
+            className="handle-size"
+            value={formValues.contactNumber}
+            onChange={handleSubmit}
+          />
+          <br />
+          <br />
 
-          <label htmlFor="enrollDate">Enrollment date</label><br />
-          <input type="date" id="enrollDate" className="handle-size" /><br /><br />
+          <label htmlFor="enrollDate">Enrollment date</label>
+          <br />
+          <input
+            type="date"
+            id="enrollDate"
+            name="enrollmentDate"
+            className="handle-size"
+            value={formValues.enrollmentDate}
+            onChange={handleSubmit}
+          />
+          <br />
+          <br />
 
           <div className="handle-button">
             <button className="button-width">Add</button>
-            <button className="button-color">Cancel</button>
+            <button className="button-color" onClick={handleGoBack}>
+              Cancel
+            </button>
           </div>
         </div>
       </form>
     </div>
-    
   );
 };
 

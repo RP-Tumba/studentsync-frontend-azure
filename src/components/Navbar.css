@@ -1,0 +1,115 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding:20px 60px 10px;
+}
+.icon{
+    display:none;
+}
+.logo{
+    color:#004B2F;
+    font-size: 22px;
+}
+.links{
+    color:#83C727;
+    
+    font-size: 22px;
+}
+.links .button-1{
+   
+        color: #686868;
+        padding: 12px;
+        width: 130px;
+        border-radius: 8px;
+        /* height: 22px; */
+        border: none;
+        background: none;
+        font-weight: bold;
+
+}
+.links .button-2{
+    color: #83C727;
+    padding: 12px;
+    width: 130px;
+    border-radius: 8px;
+    /* height: 22px; */
+    border: 2px solid #83C727;
+    background: none;
+    outline: none;
+    font-weight: bold;
+}
+.links .button-3{
+    color: #83C727;
+    padding: 12px;
+    width: 130px;
+    border-radius: 8px;
+    outline: none;
+    /* height: 22px; */
+    border: none;
+    background: none;
+    font-weight: bold;
+}
+
+.links button:hover{
+    color: #004B2F;
+}
+@media screen and (max-width:720px) {
+.links {
+        display: none;
+    }
+    .links.menu{
+        display:inline-block;
+        position: absolute;
+        width: 130px;
+        border-radius: 12px;
+        margin-top: 37px;
+        backdrop-filter: blur(40px);
+        right: 18px;
+    }
+    .icon{
+        display: contents;
+        color: #83C727;
+        zoom: 150%;
+    }
+    .icon:hover{
+        color: #004B2F;
+    }
+}
+.loading{
+    display: grid;
+    justify-content: center;
+    margin-top: 80px;
+    color: #83C727;
+    zoom: 180%;
+    animation: 2s loadings infinite;
+}
+@keyframes loadings{
+    0%{
+        transition: 0.2s;
+        rotate: 23deg;
+    }
+    15%{
+        rotate: 100deg;
+        transition: 0.2s;
+    }
+    26%{
+        rotate: 123deg;
+        transition: 0.2s;
+    }
+    40%{
+        rotate: 200deg;
+        transition: 0.2s;
+    }
+    60%{
+        rotate: 223deg;
+        transition: 0.2s;
+    }
+    75%{
+        rotate: 300deg;
+        transition: 0.2s;
+    }
+    100%{
+        rotate: 360deg;
+        transition: 0.2s;
+    }
+}

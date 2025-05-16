@@ -1,48 +1,94 @@
 import { useEffect, useState } from 'react';
+import '../components/Navbar.css';
+import SyncIcon from '@mui/icons-material/Sync';
 import './style/StudentList.css';
 import useStudentStore from '../store/studentStore';
+import { studentService } from '../lib/api';
+import { useNavigate, useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import Addstudent from './Add_student.jsx'
+import Addstudent from './Add_student.jsx';
 
 const StudentList = () => {
-  // eslint-disable-next-line no-unused-vars
+  const navigate = useNavigate();
+  const location = useLocation();
   const { students, fetchStudents, loading, error } = useStudentStore();
-  console.log(students);
-  useEffect(() => {
-    fetchStudents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const myMsg = location.state?.myMsg;
 
   const [search, setSearch] = useState('');
-  const [modal,setModal] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [msgDisplay, setMessageDisplay] = useState(true);
 
-    const toggleModel =  () => {
-        setModal(!modal);
-    }
+  useEffect(() => {
+    fetchStudents();
+  }, [fetchStudents]);
 
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   const handleChange = e => {
     setSearch(e.target.value);
   };
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
 
-  const sear = students.filter(student => {
-    const lwr = search.trim().toLowerCase();
+  const handleUpdate = data => {
+    navigate('/student-profile', { state: { studentData: data } });
+  };
+ 
+
+  // DELETE FUNCTION DONE
+  const handleDelete = async studentId => {
+    try {
+      const data = await studentService.deleteStudent(studentId);
+      if (data) {
+        console.log(data);
+        window.location.reload();
+      } else {
+        alert('Something went wrong');
+      }
+    } catch (err) {
+      console.error('Error deleting student', err);
+      alert('Failed to delete student');
+    }
+  };
+
+  const filteredStudents = students.filter(student => {
+    const query = search.trim().toLowerCase();
     return (
-      student.firstName.toLowerCase().includes(lwr) || student.lastName.toLowerCase().includes(lwr)
+      student.firstName.toLowerCase().includes(query) ||
+      student.lastName.toLowerCase().includes(query)
     );
   });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessageDisplay(myMsg);
+      navigate(location.pathname, { replace: true });
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [myMsg, navigate, location]);
+  if (loading)
+    return (
+      <div className="loading">
+        <SyncIcon />
+      </div>
+    );
+
+  if (error) return <div>{error}</div>;
 
   const mssg = 'NO RESULT FOUND ☹☹';
-const imgS = './src/assets/ron.jpg';
-
+  const imgS = './src/assets/ron.jpg';
 
   return (
     <>
+      {msgDisplay == true && myMsg ? (
+        <p className="update-msg">{myMsg}</p>
+      ) : (
+        <p className="update-none">{msgDisplay}</p>
+      )}
+
       <div className="container">
         <div className="top">
           <h1>All Students</h1>
@@ -59,48 +105,47 @@ const imgS = './src/assets/ron.jpg';
                 onChange={handleChange}
               />
             </section>
-            <section className="add">
-              <button type="button" className="but1" onClick={toggleModel}>
-                <AddIcon className="ic" />
-                <p>Add Student</p>
-              </button>
-            </section>
+
+            <button className="add" onClick={toggleModal}>
+              {' '}
+              <AddIcon className="ic" /> &nbsp; Add Student <br />
+            </button>
           </div>
         </div>
         <br />
         <br />
-        <br />
-        <br />
-
         <table className="tables" cellSpacing={0}>
           <thead>
             <tr className="thead">
-              <th >User name</th>
+              <th>User name</th>
               <th>Student ID</th>
-              <th>Enrollement date</th>
+              <th>Enrollment date</th>
               <th>Status</th>
               <th colSpan={2}>Action</th>
             </tr>
           </thead>
           <tbody>
-            {sear.length > 0 ? (
-              sear.map(item => (
+            {filteredStudents.length > 0 ? (
+              filteredStudents.map(item => (
                 <tr key={item.id}>
-                  <td><img src={imgS} alt=""  className='proPic'/> {item.firstName + ' ' + item.lastName}</td>
+                  <td>
+                    <img src={imgS} alt="" className="proPic" />
+                    {item.firstName + ' ' + item.lastName}
+                  </td>
                   <td>{item.studentId}</td>
                   <td>{item.enrollmentDate}</td>
                   <td>Enrolled</td>
                   <td>
-                    <EditIcon className='ed' />
+                    <EditIcon className="ed" onClick={() => handleUpdate(item)} />
                   </td>
                   <td>
-                    <DeleteIcon className='de' />
+                    <DeleteIcon className="de" onClick={() => handleDelete(item.studentId)} />
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="dd">
+                <td colSpan={6} className="dd">
                   {mssg}
                 </td>
               </tr>
@@ -108,20 +153,15 @@ const imgS = './src/assets/ron.jpg';
           </tbody>
         </table>
       </div>
-            {modal && (
-            <div className="modal">
-            <div className="overlay">
-                <Addstudent />
-            <button type='button' className='close-modal' onClick={toggleModel}>X</button>
-            </div>
-            </div>
-            )}
+
+      {modal && (
+        <div className="modal">
+          <div className="overlay">
+            <Addstudent />
+          </div>
+        </div>
+      )}
     </>
   );
-  return( <><div>Student List</div>
-            <Addstudent/>
-  </>);
-
 };
-
 export default StudentList;
