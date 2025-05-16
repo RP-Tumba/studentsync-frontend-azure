@@ -1,4 +1,4 @@
-import './Add_student.css';
+import './style/Add_student.css';
 import { studentService } from '../lib/api';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
