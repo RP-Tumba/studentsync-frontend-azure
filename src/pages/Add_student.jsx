@@ -1,4 +1,4 @@
-import "./Add_student.css";
+import "./style/Add_student.css";
 // import { useState } from "react";
 
 
@@ -10,7 +10,6 @@ const Addstudent = () => {
     <div className="add-color">
       <form className="handle-full-color">
 
-       
         <div className="final-title">
           <div className="handle-title">
             {/* <PanoramaPhotosphereIcon /> */}

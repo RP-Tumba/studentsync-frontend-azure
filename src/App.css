@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,7 +10,7 @@ html {
 
 body {
   font-family:
-    "Inter",
+    'Inter',
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
@@ -270,4 +270,4 @@ body {
   .view-link {
     padding: 0.2rem 0.5rem;
   }
-}
+} */
