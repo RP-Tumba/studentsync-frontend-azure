@@ -6,7 +6,12 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Addstudent from './Add_student.jsx'
+import { Outlet,Link } from 'react-router-dom';
+export const [modal,setModal] = useState(false);
 
+ export const toggleModel =  () => {
+        setModal(!modal);
+    }
 const StudentList = () => {
   // eslint-disable-next-line no-unused-vars
   const { students, fetchStudents, loading, error } = useStudentStore();
@@ -16,12 +21,11 @@ const StudentList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [search, setSearch] = useState('');
-  const [modal,setModal] = useState(false);
-
-    const toggleModel =  () => {
-        setModal(!modal);
+    const handleAlert = () => {
+         alert('are you sure you want to delete');
     }
+  const [search, setSearch] = useState('');
+  
   const handleChange = e => {
     setSearch(e.target.value);
   };
@@ -89,10 +93,10 @@ const imgS = './src/assets/ron.jpg';
                   <td>{item.enrollmentDate}</td>
                   <td>Enrolled</td>
                   <td>
-                    <EditIcon className='ed' />
+                    <Link to='/Add_student'><EditIcon className='ed' /></Link>
                   </td>
                   <td>
-                    <DeleteIcon className='de' />
+                    <DeleteIcon className='de' onClick={handleAlert}/>
                   </td>
                 </tr>
               ))

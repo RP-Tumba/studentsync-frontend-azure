@@ -1,4 +1,6 @@
 import "./Add_student.css";
+import { useState } from "react";
+import { toggleModel } from "./StudentList";
 // import { useState } from "react";
 
 
@@ -36,7 +38,7 @@ const Addstudent = () => {
             </div>
             <div>
               <label htmlFor="studentId">Student ID</label><br />
-              <input type="number" id="studentId" className="handle-size-form" />
+              <input type="text" id="studentId" className="handle-size-form" />
             </div>
           </div><br />
 
@@ -51,7 +53,7 @@ const Addstudent = () => {
 
           <div className="handle-button">
             <button className="button-width">Add</button>
-            <button className="button-color">Cancel</button>
+            <button className="button-color" onClick={toggleModel}>Cancel</button>
           </div>
         </div>
       </form>
