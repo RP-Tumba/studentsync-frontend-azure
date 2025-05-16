@@ -52,18 +52,19 @@ h1 {
 
 .add {
   background-color: #83c727;
+padding-bottom: 30px;
+display: flex;
+font-weight: bold;
+text-align: center;
+padding-top: 22px;
   border-radius: 12px;
   justify-items: center;
-  width: 30%;
-}
-.add p {
-  color: white;
-}
-.add .ic {
-  color: white;
-}
-.but1 {
-  border-radius: 12px;
+  width: 180px;
+  border: none;
+  height: 52px;
+  padding: 22px;
+    color: white;
+ 
 }
 
 .thead {
@@ -88,10 +89,13 @@ h1 {
 .but1 {
   display: flex;
   align-items: center;
-  background-color: #83c727;
+ 
   padding: 10px 30px;
   border: none;
+  
 }
+
+
 
 @media (max-width: 1000px) {
   .leftbar {
@@ -192,7 +196,7 @@ position: fixed;
   background-color: rgba(49, 49, 49, 0.8);
 }
 .close-modal{
-  position: absolute;
+  
   top: 108px;
   right: 620px;
   padding: 5px 10px;
@@ -213,8 +217,18 @@ position: fixed;
   color: red;
   cursor: pointer;
 }
-
-.pa{
-  background-color: green;
+.pag{
   width: 2%;
+  padding: 5px;
+  height: 2%;
+  color: black;
+  margin-right: 8px; 
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  
+}
+.pag:hover{
+  background-color: yellowgreen;
+  color: white;
 }
