@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import SearchSharpIcon from "@mui/icons-material/SearchSharp";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import "./styles/StudentProfile.css";
-import pro from "../assets/pro.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import SearchSharpIcon from '@mui/icons-material/SearchSharp';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import './styles/StudentProfile.css';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { studentService } from '../lib/api';
 
 const StudentProfileForm = () => {
   const navigate = useNavigate();
@@ -13,19 +13,25 @@ const StudentProfileForm = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formValues, setFormValues] = useState(studentData || {});
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
+    setFormValues(prev => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (isEditing) {
-      console.log("Submitted Student Data:", formValues);
-      alert("Form submitted!");
+      console.log('Submitted Student Data:', formValues);
+      const data = studentService.updateStudent(formValues.id, formValues);
+      if (data) {
+        const msg = `${formValues.firstName} updated successfull!`;
+        navigate('/pages', { state: { myMsg: msg } });
+      } else {
+        alert('error');
+      }
       setIsEditing(false);
     } else {
       setIsEditing(true);
@@ -36,28 +42,30 @@ const StudentProfileForm = () => {
     navigate(-1);
   };
 
+  const name1 = studentData.firstName;
+  const name2 = studentData.lastName;
   return (
     <>
       {studentData ? (
         <div>
           <div className="part1">
-            <div className="welcome">WELCOME {studentData.firstName}.!</div>
-            <p>Tue/05/2025</p>
-            <div className="search">
-              <SearchSharpIcon />
-              <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search..."
-              />
+            <div className="welcome">
+              WELCOME {studentData.firstName} {studentData.lastName}. !
             </div>
+            <p>Tue/05/2025</p>
           </div>
 
           <div className="content">
             <div className="part3">
               <div className="details">
-                <img src={pro} alt="Profile" />
+                {/* profile image */}
+                <input type="file" id="imageInput" accept="image/*" />
+                <label htmlFor="Profile" id="imageLabel">
+                  <div className="img">
+                    {name1.charAt(0).toUpperCase()}
+                    {name2.charAt(0).toUpperCase()}
+                  </div>
+                </label>
                 <strong>
                   {studentData.firstName} {studentData.lastName}
                 </strong>
@@ -159,7 +167,7 @@ const StudentProfileForm = () => {
                 </div>
 
                 <button className="but1" type="submit">
-                  {isEditing ? "Save" : "Edit"}
+                  {isEditing ? 'Save' : 'Edit'}
                 </button>
               </form>
 

@@ -46,6 +46,16 @@ const useStudentStore = create((set, get) => ({
   deleteStudent: async id => {
     set({ loading: true, error: null });
     // implementation goes here
+    try {
+      const response = await studentService.deleteStudent(id);
+      if (response.success) {
+        set({ students: response.data, loading: false });
+      } else {
+        set({ error: response.message, loading: false });
+      }
+    } catch (error) {
+      set({ error: error.message, loading: false });
+    }
   },
 
   searchStudents: async query => {

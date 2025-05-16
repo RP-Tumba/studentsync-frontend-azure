@@ -1,0 +1,183 @@
+import { useEffect, useState } from 'react';
+import '../components/Navbar.css';
+import SyncIcon from '@mui/icons-material/Sync';
+import './style/StudentList.css';
+import useStudentStore from '../store/studentStore';
+import { studentService } from '../lib/api';
+import { useNavigate, useLocation } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Addstudent from './Add_student.jsx';
+
+const StudentList = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { students, fetchStudents, loading, error } = useStudentStore();
+  const myMsg = location.state?.myMsg;
+
+  const [search, setSearch] = useState('');
+  const [modal, setModal] = useState(false);
+  const [msgDisplay, setMessageDisplay] = useState(true);
+
+  useEffect(() => {
+    fetchStudents();
+  }, [fetchStudents]);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const handleChange = e => {
+    setSearch(e.target.value);
+  };
+
+  const handleUpdate = data => {
+    navigate('/student-profile', { state: { studentData: data } });
+  };
+
+  // DELETE FUNCTION DONE
+  const handleDelete = async studentId => {
+    try {
+      const data = await studentService.deleteStudent(studentId);
+      if (data) {
+        console.log(data);
+        window.location.reload();
+      } else {
+        alert('Something went wrong');
+      }
+    } catch (err) {
+      console.error('Error deleting student', err);
+      alert('Failed to delete student');
+    }
+  };
+
+  const filteredStudents = students.filter(student => {
+    const query = search.trim().toLowerCase();
+    return (
+      student.firstName.toLowerCase().includes(query) ||
+      student.lastName.toLowerCase().includes(query)
+    );
+  });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessageDisplay(myMsg);
+      navigate(location.pathname, { replace: true });
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [myMsg, navigate, location]);
+  if (loading)
+    return (
+      <div className="loading">
+        <SyncIcon />
+      </div>
+    );
+  const refresh = () => {
+    window.location.reload();
+  };
+  if (error)
+    return (
+      <div className="connection--error">
+        <h2>
+          <b>Connection Failed</b>
+        </h2>
+        <p>Check your connection to the internet and try again.</p>
+        <br />
+        <br />
+        <button onClick={refresh} className="retry">
+          Retry
+        </button>
+      </div>
+    );
+
+  const mssg = 'NO RESULT FOUND ☹☹';
+
+  return (
+    <>
+      {msgDisplay == true && myMsg ? (
+        <p className="update-msg">{myMsg}</p>
+      ) : (
+        <p className="update-none">{msgDisplay}</p>
+      )}
+
+      <div className="container">
+        <div className="top">
+          <h1>All Students</h1>
+          <div className="leftbar">
+            <section className="search">
+              <SearchIcon className="ii" />
+              &nbsp;&nbsp;
+              <input
+                type="text"
+                name="Search"
+                id=""
+                placeholder="Search"
+                value={search}
+                onChange={handleChange}
+              />
+            </section>
+
+            <button className="add" onClick={toggleModal}>
+              {' '}
+              <AddIcon className="ic" /> &nbsp; Add Student <br />
+            </button>
+          </div>
+        </div>
+        <br />
+        <br />
+        <table className="tables" cellSpacing={0}>
+          <thead>
+            <tr className="thead">
+              <th>User name</th>
+              <th>Student ID</th>
+              <th>Enrollment date</th>
+              <th>Status</th>
+              <th colSpan={2}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredStudents.length > 0 ? (
+              filteredStudents.map(item => (
+                <tr key={item.id}>
+                  <td>
+                    <div className="proPic">
+                      {item.firstName.charAt(0).toUpperCase()}
+                      {item.lastName.charAt(0).toUpperCase()}
+                    </div>
+                    {item.firstName + ' ' + item.lastName}
+                  </td>
+                  <td>{item.studentId}</td>
+                  <td>{item.enrollmentDate}</td>
+                  <td>Enrolled</td>
+                  <td>
+                    <EditIcon className="ed" onClick={() => handleUpdate(item)} />
+                  </td>
+                  <td>
+                    <DeleteIcon className="de" onClick={() => handleDelete(item.studentId)} />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="dd">
+                  {mssg}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {modal && (
+        <div className="modal">
+          <div className="overlay">
+            <Addstudent />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+export default StudentList;

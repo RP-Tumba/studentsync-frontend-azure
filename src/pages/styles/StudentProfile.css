@@ -2,7 +2,28 @@
 * {
   box-sizing: border-box;
 }
+#imageInput{
+  display: none;
+}
+#imageLabel{
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  
+}
+#imageLabel h1{
+  opacity:0%;
+  transition: 1s;
+  font-size: 23px;
+  margin-top: 39px;
+  margin-left: 41px;
+  position: absolute;
+  color: rgb(198, 252, 162);
 
+}
+#imageLabel h1:hover{
+  opacity:60%;
+}
 html,
 body {
   height: 100vh;
@@ -82,8 +103,16 @@ body {
   width: 200px;
 }
 
-.details img {
+.details .img {
+  background-color: rgb(117, 232, 117);
   width: 120px;
+  margin-left: 22px;
+  font-weight: 900;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  padding-top: 30px;
+  font-size: 40px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
