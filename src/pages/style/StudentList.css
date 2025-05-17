@@ -247,7 +247,7 @@ h1 {
 
 .delete {
     background-color: darkslategray;
-    width: 30%;
+    width: 400px;
     height: 200px;
     border-radius: 16px;
     align-items: center;
@@ -258,8 +258,8 @@ h1 {
     color: #ebf3e1;
     margin-left: 30%;
     margin-right: 30%;
-    margin-top: 10%;
-    position: absolute;
+    margin-top: 3%;
+    position: fixed;
 }
 
 .now {
@@ -294,7 +294,7 @@ h1 {
     justify-content: center;
 }
 
-@media only screen and(max-width: 800px) {
+@media only screen and(max-width: 720px) {
     .leftbar {
         right: 0;
         gap: 1rem;
@@ -306,6 +306,22 @@ h1 {
     .proPic {
         width: 20px;
         display: none;
+    }
+    .delete {
+        background-color: darkslategray;
+        width: 80%;
+        height: 200px;
+        border-radius: 16px;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        text-align: center;
+        padding: 32px;
+        color: #ebf3e1;
+        margin-left: 30%;
+        margin-right: 30%;
+        margin-top: 10%;
+        position: absolute;
     }
 }
 

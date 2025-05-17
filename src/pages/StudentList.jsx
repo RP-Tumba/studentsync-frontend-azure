@@ -148,7 +148,6 @@ const StudentList = () => {
           </button>
         </div>
       </div>
-
       <div className="container">
         <div className="top">
           <h1>All Students</h1>
