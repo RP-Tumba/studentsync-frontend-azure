@@ -172,16 +172,7 @@ h1 {
 
 }
 
-.modal-content input{
-position: absolute;
-left: 10em;
-padding: 10px 10px;
-margin-top: 62px;
-border-radius: 8px;
-width: 50%;
-border: none;
 
-}
  .modal, .overlay{
 left: 0;
 right: 0;
@@ -295,3 +286,6 @@ position: fixed;
  justify-content: center;
   
 }
+
+
+
