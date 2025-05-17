@@ -48,6 +48,7 @@ h1 {
 .dd {
   font-size: 32px;
   font-weight: bold;
+  color: #83c727;
 }
 
 .add {
@@ -147,12 +148,11 @@ h1 {
     width: 100%;
   }
   .add {
-    padding-left: 40%;
     padding-top: 10%;
-    background-color: transparent;
+    background-color: #83c727;
+    margin-top: 5px;
   }
 }
-/*trying out something*/
 .btn-modal {
     padding: 10px 20px;
     display: block;

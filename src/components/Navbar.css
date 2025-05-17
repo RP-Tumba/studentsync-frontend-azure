@@ -11,11 +11,18 @@ nav {
 .logo {
     color: #004B2F;
     font-size: 22px;
+    border: none;
 }
-
+.no-line{
+    text-decoration: none;
+    color: inherit;
+}
+.logo img{
+    width: 23%;
+    border-radius: 12px;
+}
 .links {
     color: #83C727;
-
     font-size: 22px;
 }
 

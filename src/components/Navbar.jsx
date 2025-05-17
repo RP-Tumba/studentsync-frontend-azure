@@ -12,13 +12,14 @@ const Navbar = () => {
     const ur = './public/index.png';
   return (
     <nav>
+      <Link to="/" className='no-line'>
       <div className="logo">
         <h1><img src={ur} alt="rp logo" /> Tumba College</h1>
       </div>
+    </Link>
       <div className="icon" onClick={drops}>
         <MenuIcon />
       </div>
-
       <div className={`links ${isOpen ? 'menu' : ''}`}>
         <Link to="/">
           <button className="button-3">Home</button>

@@ -22,15 +22,15 @@ const Addstudent = () => {
 
   const handleSubmits = async e => {
     e.preventDefault();
-    console.log('submitted datas are: ', formValues);
-
+    
     try {
       const result = await studentService.createStudent(formValues);
       if (result.success) {
-        console.log('Added succefully');
-        navigate(-1); // redirect or update UI
+        alert('student added')
+        navigate(-1)
+        ; // redirect or update UI
       } else {
-        alert('Error: ' + result.message);
+        alert('some inputs already exists');
       }
     } catch (err) {
       console.error('Submission failed:', err);
@@ -74,6 +74,7 @@ const Addstudent = () => {
                 className="handle-size-form"
                 value={formValues.lastName}
                 onChange={handleSubmit}
+                
               />
             </div>
             <div>
@@ -122,6 +123,7 @@ const Addstudent = () => {
             type="number"
             id="contact"
             name="contactNumber"
+            maxLength={10}
             className="handle-size"
             value={formValues.contactNumber}
             onChange={handleSubmit}

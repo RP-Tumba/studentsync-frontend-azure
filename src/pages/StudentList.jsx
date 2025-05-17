@@ -62,6 +62,7 @@ const StudentList = () => {
       if (data) {
         console.log(data);
         window.location.reload();
+        alert('delete successfully')
       } else {
         alert('Something went wrong');
       }
@@ -111,7 +112,7 @@ const StudentList = () => {
       </div>
     );
 
-  const mssg = 'NO RESULT FOUND ☹☹';
+  const mssg = 'NO RESULT FOUND ';
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -144,7 +145,6 @@ const StudentList = () => {
 
         <div className="top">
           <h1>All Students</h1>
-          {/* Delete Conf.. */}
           
           <div className="leftbar">
             <section className="search">
