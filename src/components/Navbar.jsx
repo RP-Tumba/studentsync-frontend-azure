@@ -9,10 +9,11 @@ const Navbar = () => {
   const drops = () => {
     setIsOpen(!isOpen);
   };
+    const ur = './public/index.png';
   return (
     <nav>
       <div className="logo">
-        <h1>L:Tumba College</h1>
+        <h1><img src={ur} alt="rp logo" /> Tumba College</h1>
       </div>
       <div className="icon" onClick={drops}>
         <MenuIcon />

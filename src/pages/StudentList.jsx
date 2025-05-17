@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../components/Navbar.css';
-import SyncIcon from '@mui/icons-material/Sync';
+// import SyncIcon from '@mui/icons-material/Sync';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import './style/StudentList.css';
 import useStudentStore from '../store/studentStore';
 import { studentService } from '../lib/api';
@@ -87,9 +88,10 @@ const StudentList = () => {
   }, [myMsg, navigate, location]);
   if (loading)
     return (
-      <div className="loading">
-        <SyncIcon />
+      <center> <div className="loading">
+        <RefreshIcon />
       </div>
+      </center>
     );
   const refresh = () => {
     window.location.reload();
