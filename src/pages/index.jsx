@@ -109,7 +109,7 @@ const LandingPage = () => {
             <p className="green">Gallery</p>
             <h2 className="dack-green">The Gym College Students lifestyle</h2>
             <div className="scroll">
-              <ul>
+              <ul className="all--lists">
                 <li>All</li>
                 <li>Foundations period</li>
                 <li>Sport culture</li>
