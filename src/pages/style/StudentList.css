@@ -204,9 +204,15 @@ position: fixed;
 }
 
 .proPic{
-  width: 7%;
-  height: 5%;
-  border-radius: 16px;
+  width: 14%;
+  padding-top: 10px;
+  font-weight: 900;
+  color: #ebf3e1;
+  height: 50px;
+  background-color: rgba(49, 49, 49, 0.8);
+  border-radius: 25px;
+  overflow-wrap: hidden;
+  border: 2px solid rgba(33, 32, 32, 0.8);
   float: left;
 }
 .ed{
@@ -231,4 +237,61 @@ position: fixed;
 .pag:hover{
   background-color: yellowgreen;
   color: white;
+}
+.connection--error{
+  text-align: center;
+  font-weight: bold;
+}
+.connection--error .retry{
+  color: #ebf3e1;
+  font-weight: bold;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+}
+.delete{
+  background-color: darkslategray;
+  width: 30%;
+  height: 200px;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  text-align: center;
+  padding: 32px;
+  color: #ebf3e1;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 10%;
+  position: absolute;
+  
+}
+.now{
+  /* display: flex; */
+  display: none;
+}
+.cancel{
+  background-color: tomato;
+  color: aliceblue;
+  font-weight: bold;
+  width: 150px;
+  padding: 12px;
+  font-size: 20px;
+  height: 50px;
+}
+.yes{
+  background-color: #83c727;
+  color: aliceblue;
+  font-weight: bold;
+  width: 150px;
+  padding: 12px;
+  font-size: 20px;
+  height: 50px;
+}
+.joy{
+  display: flex;
+  width: 100%;
+ gap: 30px;
+ justify-content: center;
+  
 }

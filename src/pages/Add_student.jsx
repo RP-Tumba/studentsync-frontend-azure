@@ -1,4 +1,4 @@
-import './Add_student.css';
+import './style/Add_student.css';
 import { studentService } from '../lib/api';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -40,7 +40,7 @@ const Addstudent = () => {
 
   return (
     <div className="add-color">
-      <form  className="handle-full-color">
+      <form className="handle-full-color">
         <div className="final-title">
           <div className="handle-title">
             {/* <PanoramaPhotosphereIcon /> */}

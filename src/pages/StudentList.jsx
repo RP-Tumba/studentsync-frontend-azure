@@ -47,9 +47,17 @@ const StudentList = () => {
   };
 
   // DELETE FUNCTION DONE
+  const [isDeleted,setIsDeleted] = useState(false);
+  const [studentToDelete,setStudentToDelete] = useState(null);
+
+  const deleteNow = () => {
+    setIsDeleted(!isDeleted);
+  }
   const handleDelete = async studentId => {
     try {
-      const data = await studentService.deleteStudent(studentId);
+
+        const data = await studentService.deleteStudent(studentId);
+      
       if (data) {
         console.log(data);
         window.location.reload();
@@ -61,7 +69,7 @@ const StudentList = () => {
       alert('Failed to delete student');
     }
   };
-
+  
   const filteredStudents = currentPost.filter(student => {
     const query = search.trim().toLowerCase();
     return (
@@ -83,12 +91,27 @@ const StudentList = () => {
         <SyncIcon />
       </div>
     );
-
-  if (error) return <div>{error}</div>;
+  const refresh = () => {
+    window.location.reload();
+  };
+  if (error)
+    return (
+      <div className="connection--error">
+        <h2>
+          <b>Connection Failed</b>
+        </h2>
+        <p>Check your connection to the internet and try again.</p>
+        <br />
+        <br />
+        <button onClick={refresh} className="retry">
+          Retry
+        </button>
+      </div>
+    );
 
   const mssg = 'NO RESULT FOUND ☹☹';
-  const imgS = './src/assets/ron.jpg';
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <>
       {msgDisplay == true && myMsg ? (
@@ -97,9 +120,30 @@ const StudentList = () => {
         <p className="update-none">{msgDisplay}</p>
       )}
 
+        {/* <div className='delete'> */}
+        <div className={isDeleted ?'delete' : 'now'}>
+          <h2>Are you Sure you want to remove this student?</h2><br />
+        <div className='joy'>
+
+          <button className='cancel' onClick={()=>{
+            deleteNow(false);
+            setStudentToDelete(null);
+          }}>Cancel</button>
+          <button className='yes' onClick={() =>{
+            handleDelete(studentToDelete.studentId);
+            deleteNow(false);
+            setStudentToDelete(item);
+          }}>Yes</button>
+          </div>
+          
+        </div>
+
       <div className="container">
+
         <div className="top">
           <h1>All Students</h1>
+          {/* Delete Conf.. */}
+          
           <div className="leftbar">
             <section className="search">
               <SearchIcon className="ii" />
@@ -137,7 +181,10 @@ const StudentList = () => {
               filteredStudents.map(item => (
                 <tr key={item.id}>
                   <td>
-                    <img src={imgS} alt="" className="proPic" />
+                    <div className="proPic">
+                      {item.firstName.charAt(0).toUpperCase()}
+                      {item.lastName.charAt(0).toUpperCase()}
+                    </div>
                     {item.firstName + ' ' + item.lastName}
                   </td>
                   <td>{item.studentId}</td>
@@ -147,7 +194,12 @@ const StudentList = () => {
                     <EditIcon className="ed" onClick={() => handleUpdate(item)} />
                   </td>
                   <td>
-                    <DeleteIcon className="de" onClick={() => handleDelete(item.studentId)} />
+                    <DeleteIcon className="de" onClick={()=>{ 
+                      
+                      deleteNow(true);
+                      setStudentToDelete(item);
+                      
+                      }}/>
                   </td>
                 </tr>
               ))
@@ -167,7 +219,9 @@ const StudentList = () => {
           <div className="overlay">
             <Addstudent />
           </div>
+
         </div>
+
       )}
     </>
   );
