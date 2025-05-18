@@ -24,7 +24,9 @@ const LandingPage = () => {
             </div>
             <div className="buttons">
               <div className="btn-f">
-                <button className="btn bg-white">Learn More</button>
+                <Link to="https://www.iprctumba.rp.ac.rw/" target="_blank">
+                  <button className="btn bg-white">Learn More</button>
+                </Link>
                 <Link to="/pages">
                   <button className="btn bg-green">All Students</button>
                 </Link>
@@ -109,13 +111,14 @@ const LandingPage = () => {
             <p className="green">Gallery</p>
             <h2 className="dack-green">The Gym College Students lifestyle</h2>
             <div className="scroll">
-              <ul>
+              <ul className="all--lists">
                 <li>All</li>
                 <li>Foundations period</li>
                 <li>Sport culture</li>
                 <li>Projects phase</li>
               </ul>
             </div>
+          
           </div>
           <div className="gallery-main">
             <div className="gallery-card found">

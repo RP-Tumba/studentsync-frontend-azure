@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import './styles/StudentProfile.css';
-import pro from '../assets/pro.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { studentService } from '../lib/api';
+import WestIcon from '@mui/icons-material/West';
 
 const StudentProfileForm = () => {
   const navigate = useNavigate();
@@ -13,6 +12,9 @@ const StudentProfileForm = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [formValues, setFormValues] = useState(studentData || {});
+  const [enrollmentDateForDisplay, setEnrollmentDateForDisplay] = useState(
+    studentData?.enrollmentDate || ''
+  );
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -25,13 +27,13 @@ const StudentProfileForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (isEditing) {
-      console.log('Submitted Student Data:', formValues);
       const data = studentService.updateStudent(formValues.id, formValues);
       if (data) {
-        const msg = `${formValues.firstName} updated successfull!`;
+        setEnrollmentDateForDisplay(formValues.enrollmentDate);
+        const msg = `${formValues.firstName} updated successfully!`;
         navigate('/pages', { state: { myMsg: msg } });
       } else {
-        alert('error');
+        alert('Error updating student');
       }
       setIsEditing(false);
     } else {
@@ -42,7 +44,32 @@ const StudentProfileForm = () => {
   const handleGoBack = () => {
     navigate(-1);
   };
+  const name1 = studentData.firstName;
+  const name2 = studentData.lastName;
+  const getTimeAgo = dateString => {
+    if (!dateString) return '';
+    const now = new Date();
+    const past = new Date(dateString);
+    const diffMs = now - past;
 
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (diffDays < 1) return 'Today';
+    if (diffDays === 1) return '1 day ago';
+    if (diffDays < 7) return `${diffDays} days ago`;
+
+    const diffWeeks = Math.floor(diffDays / 7);
+    if (diffWeeks === 1) return '1 week ago';
+    if (diffWeeks < 4) return `${diffWeeks} weeks ago`;
+
+    const diffMonths = Math.floor(diffDays / 30);
+    if (diffMonths === 1) return '1 month ago';
+   if(diffMonths > 1) return `${diffMonths} months ago`;
+    const year = Math.floor(diffMonths/12)
+    if(year === 1) return ('1 year ago')
+      return (`${year}years ago`);
+    
+      
+  };
   return (
     <>
       {studentData ? (
@@ -51,13 +78,20 @@ const StudentProfileForm = () => {
             <div className="welcome">
               WELCOME {studentData.firstName} {studentData.lastName}. !
             </div>
-            <p>Tue/05/2025</p>
+            <p>{new Date().toDateString()}</p>
           </div>
 
           <div className="content">
             <div className="part3">
               <div className="details">
-                <img src={pro} alt="Profile" />
+                {/* profile image */}
+                <input type="file" id="imageInput" accept="image/*" />
+                <label htmlFor="Profile" id="imageLabel">
+                  <div className="img">
+                    {name1.charAt(0).toUpperCase()}
+                    {name2.charAt(0).toUpperCase()}
+                  </div>
+                </label>
                 <strong>
                   {studentData.firstName} {studentData.lastName}
                 </strong>
@@ -166,13 +200,13 @@ const StudentProfileForm = () => {
               <div className="myemail">
                 <ContactMailIcon />
                 <div>
-                  <p>{studentData.email}</p> <br />
-                  <p>1 month ago</p>
+                  <p>{studentData.email}</p>
+                  <p>{getTimeAgo(enrollmentDateForDisplay)}</p>
                 </div>
               </div>
 
               <div className="goback">
-                <button onClick={handleGoBack}>Go back</button>
+                <button onClick={handleGoBack}><WestIcon /> Go back</button>
               </div>
             </div>
           </div>

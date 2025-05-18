@@ -4,8 +4,9 @@ import './App.css';
 import FooterPart from './pages/Footer.jsx';
 import Navbar from './components/Navbar';
 import StudentList from './pages/StudentList';
-// import "./App.css";
+
 import LandingPage from './pages';
+import Addstudent from './pages/Add_student.jsx';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Routes>
             <Route path="/student-profile" element={<StudentProfileForm />} />
             <Route path="/pages" element={<StudentList />} />
+            <Route path="/Add_student" element={<Addstudent />} />
             <Route path="/" element={<LandingPage />} />
           </Routes>
         </main>

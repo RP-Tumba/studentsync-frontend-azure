@@ -94,13 +94,13 @@ Zustand store is configured in `/src/store/studentStore.js`. Implementation need
 3. Start development server: `npm run dev`
 4. Access the application at `http://localhost:5173`
 
-
 ## 💻 Commit Convention
 
 Commits must follow this format:
 `type: subject`
 
 ### Types
+
 - feat - new features
 - fix - bug fixes
 - docs - documentation
@@ -110,10 +110,10 @@ Commits must follow this format:
 - chore - maintenance tasks
 
 ### Examples
+
 feat: add student registration form
 fix: resolve date formatting
 docs: update API documentation
 style: format components
-
 
 ## NOTE: Invalid commits will be rejected by husky

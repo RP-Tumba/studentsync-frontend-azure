@@ -1,4 +1,4 @@
-import './Add_student.css';
+import './style/Add_student.css';
 import { studentService } from '../lib/api';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -14,33 +14,42 @@ const Addstudent = () => {
 
   const handleSubmit = e => {
     const { name, value } = e.target;
-    setFormValues(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+             
+        setFormValues(prev => ({
+          ...prev,
+          [name]: value,
+        }));
+
   };
 
+    const newd = new Date().toISOString().split('T')[0];
   const handleSubmits = async e => {
     e.preventDefault();
-    console.log('submitted datas are: ', formValues);
-
     try {
+      if(formValues.contactNumber.length !== 10){
+        alert("contact number have to be exactly to 10");
+        return;
+      }
+
+      if(formValues.studentId.length !== 8){
+        alert('student id has to be 8 numbers');
+        return;
+      }
       const result = await studentService.createStudent(formValues);
       if (result.success) {
-        console.log('Added succefully');
-        navigate(-1); // redirect or update UI
+        alert('student added');
+        navigate('/');
       } else {
-        alert('Error: ' + result.message);
+        alert('Make sure that all inputs are filled and are unique');
       }
     } catch (err) {
       console.error('Submission failed:', err);
       alert('Submission failed');
     }
   };
-
   return (
     <div className="add-color">
-      <form onSubmit={handleSubmits} className="handle-full-color">
+      <form className="handle-full-color">
         <div className="final-title">
           <div className="handle-title">
             {/* <PanoramaPhotosphereIcon /> */}
@@ -49,7 +58,6 @@ const Addstudent = () => {
           </div>
           <p>Add new student</p>
         </div>
-
         <div className="form-body">
           <div className="handle-display">
             <div>
@@ -83,6 +91,8 @@ const Addstudent = () => {
                 type="date"
                 id="dob"
                 name="dateOfBirth"
+                min="1990-01-01"
+                max="2007-01-01"
                 className="handle-size-form date-birth"
                 value={formValues.dob}
                 onChange={handleSubmit}
@@ -92,7 +102,7 @@ const Addstudent = () => {
               <label htmlFor="studentId">Student ID</label>
               <br />
               <input
-                type="number"
+                type="text"
                 id="studentId"
                 name="studentId"
                 className="handle-size-form"
@@ -102,7 +112,6 @@ const Addstudent = () => {
             </div>
           </div>
           <br />
-
           <label htmlFor="email">Email</label>
           <br />
           <input
@@ -115,36 +124,39 @@ const Addstudent = () => {
           />
           <br />
           <br />
-
           <label htmlFor="contact">Contact number</label>
           <br />
           <input
-            type="number"
+            type="tel"
             id="contact"
             name="contactNumber"
+            max={10}
             className="handle-size"
+            maxLength={10}
             value={formValues.contactNumber}
             onChange={handleSubmit}
           />
           <br />
           <br />
-
           <label htmlFor="enrollDate">Enrollment date</label>
           <br />
           <input
             type="date"
             id="enrollDate"
             name="enrollmentDate"
+            min="2024-05-08"
+            max={newd}
             className="handle-size"
             value={formValues.enrollmentDate}
             onChange={handleSubmit}
           />
           <br />
           <br />
-
           <div className="handle-button">
-            <button className="button-width">Add</button>
-            <button className="button-color" onClick={handleGoBack}>
+            <button className="button-width" onClick={handleSubmits}>
+              Add
+            </button>
+            <button className="button-color" onClick={() => navigate('/pages')}>
               Cancel
             </button>
           </div>
