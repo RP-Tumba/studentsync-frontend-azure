@@ -28,7 +28,7 @@ const Addstudent = () => {
       const result = await studentService.createStudent(formValues);
       if (result.success) {
         console.log('Added succefully');
-        navigate(-1); // redirect or update UI
+        navigate('/pages'); // redirect or update UI
       } else {
         alert('Error: ' + result.message);
       }
@@ -119,10 +119,11 @@ const Addstudent = () => {
           <label htmlFor="contact">Contact number</label>
           <br />
           <input
-            type="number"
+            type="tel"
             id="contact"
             name="contactNumber"
             className="handle-size"
+            maxLength={10}
             value={formValues.contactNumber}
             onChange={handleSubmit}
           />
@@ -143,7 +144,9 @@ const Addstudent = () => {
           <br />
 
           <div className="handle-button">
-            <button className="button-width" onClick={handleSubmits}>Add</button>
+            <button className="button-width" onClick={handleSubmits}>
+              Add
+            </button>
             <button className="button-color" onClick={handleGoBack}>
               Cancel
             </button>

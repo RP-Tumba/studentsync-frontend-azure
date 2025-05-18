@@ -1,28 +1,25 @@
-
 * {
   box-sizing: border-box;
 }
-#imageInput{
+#imageInput {
   display: none;
 }
-#imageLabel{
+#imageLabel {
   cursor: pointer;
   text-align: center;
   position: relative;
-  
 }
-#imageLabel h1{
-  opacity:0%;
+#imageLabel h1 {
+  opacity: 0%;
   transition: 1s;
   font-size: 23px;
   margin-top: 39px;
   margin-left: 41px;
   position: absolute;
   color: rgb(198, 252, 162);
-
 }
-#imageLabel h1:hover{
-  opacity:60%;
+#imageLabel h1:hover {
+  opacity: 60%;
 }
 html,
 body {
@@ -46,7 +43,6 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
-
 
 .search {
   display: flex;
@@ -78,14 +74,12 @@ body {
   color: #333;
 }
 
-
 .content {
   display: flex;
   padding: 15px;
   height: calc(100vh - 60px);
   overflow: hidden;
 }
-
 
 .part3 {
   flex: 0.8;
@@ -128,7 +122,6 @@ body {
   font-size: 14px;
   color: #555;
 }
-
 
 .form-container {
   flex: 2;
@@ -181,7 +174,6 @@ input:focus {
 }
 
 .but1 {
- 
   color: white;
   border: none;
   padding: 10px;
@@ -192,9 +184,6 @@ input:focus {
   margin-top: 20px;
   align-self: flex-end;
 }
-
-
-
 
 .myemail {
   display: flex;
@@ -210,7 +199,6 @@ input:focus {
   color: #555;
   font-size: 14px;
 }
-
 
 .goback {
   display: flex;
@@ -231,13 +219,10 @@ input:focus {
   background-color: #bbb;
 }
 
-
 .form-container::-webkit-scrollbar {
   width: 0;
   background: transparent;
 }
-
-
 
 @media (max-width: 1024px) {
   .form-columns {

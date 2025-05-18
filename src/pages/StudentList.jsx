@@ -169,7 +169,8 @@ const StudentList = () => {
 
             <button className="add" onClick={toggleModal}>
               {' '}
-              <AddIcon className="ic" /> &nbsp; Add Student <br />
+              <AddIcon className="ic" /> &nbsp; <p> Add Student </p>
+              <br />
             </button>
           </div>
         </div>
@@ -183,7 +184,9 @@ const StudentList = () => {
                 <th>Student ID</th>
                 <th>Enrollment date</th>
                 <th>Status</th>
-                <th colSpan={2}>Action</th>
+                <th colSpan={2} className="table-head">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -191,7 +194,7 @@ const StudentList = () => {
                 filteredStudents.map(item => (
                   <tr key={item.id}>
                     <td className="name-of">
-                      <div className="proPic">
+                      <div onClick={() => handleUpdate(item)} className="proPic">
                         {item.firstName.charAt(0).toUpperCase()}
                         {item.lastName.charAt(0).toUpperCase()}
                       </div>
@@ -201,10 +204,10 @@ const StudentList = () => {
                     <td>{item.enrollmentDate}</td>
                     <td>Enrolled</td>
 
-                    <td>
+                    <td className="editz">
                       <EditIcon className="ed" onClick={() => handleUpdate(item)} />
                     </td>
-                    <td>
+                    <td className="deletez">
                       <DeleteIcon
                         className="de"
                         onClick={() => {
