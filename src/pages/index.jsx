@@ -118,6 +118,7 @@ const LandingPage = () => {
                 <li>Projects phase</li>
               </ul>
             </div>
+          
           </div>
           <div className="gallery-main">
             <div className="gallery-card found">
