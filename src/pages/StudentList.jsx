@@ -46,8 +46,7 @@ const StudentList = () => {
     navigate('/student-profile', { state: { studentData: data } });
   };
 
-
-  const [isDeleted, setIsDeleted] = useState(false);
+ const [isDeleted, setIsDeleted] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState(null);
 
   const deleteNow = () => {
@@ -150,10 +149,10 @@ const StudentList = () => {
           </button>
         </div>
       </div>
-
       <div className="container">
         <div className="top">
           <h1>All Students</h1>
+          {/* Delete Conf.. */}
 
           <div className="leftbar">
             <section className="search">
@@ -171,62 +170,67 @@ const StudentList = () => {
 
             <button className="add" onClick={toggleModal}>
               {' '}
-              <AddIcon className="ic" /> &nbsp; Add Student <br />
+              <AddIcon className="ic" /> &nbsp; <p> Add Student </p>
+              <br />
             </button>
           </div>
         </div>
         <br />
         <br />
-        <table className="tables" cellSpacing={0}>
-          <thead>
-            <tr className="thead">
-              <th>User name</th>
-              <th>Student ID</th>
-              <th>Enrollment date</th>
-              <th>Status</th>
-              <th colSpan={2}>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredStudents.length > 0 ? (
-              filteredStudents.map(item => (
-                <tr key={item.id}>
-                  <td>
-                    <div className="proPic">
-                      {item.firstName.charAt(0).toUpperCase()}
-                      {item.lastName.charAt(0).toUpperCase()}
-                    </div>
-                    {item.firstName + ' ' + item.lastName}
-                  </td>
-                  <td>{item.studentId}</td>
-                  <td>{item.enrollmentDate}</td>
-                  <td>Enrolled</td>
-                  <td>
-                    <EditIcon className="ed" onClick={() => handleUpdate(item)} />
-                  </td>
-                  <td>
-                    <DeleteIcon
-                      className="de"
-                      onClick={() => {
-                        deleteNow(true);
-                        setStudentToDelete(item);
-                      }}
-                    />
+        <div className="scroller">
+          <table className="tables" cellSpacing={0}>
+            <thead>
+              <tr className="thead">
+                <th>User name</th>
+                <th>Student ID</th>
+                <th>Enrollment date</th>
+                <th>Status</th>
+                <th colSpan={2} className="table-head">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredStudents.length > 0 ? (
+                filteredStudents.map(item => (
+                  <tr key={item.id}>
+                    <td className="name-of">
+                      <div onClick={() => handleUpdate(item)} className="proPic">
+                        {item.firstName.charAt(0).toUpperCase()}
+                        {item.lastName.charAt(0).toUpperCase()}
+                      </div>
+                      {item.firstName + ' ' + item.lastName}
+                    </td>
+                    <td>{item.studentId}</td>
+                    <td>{item.enrollmentDate}</td>
+                    <td>Enrolled</td>
+
+                    <td className="editz">
+                      <EditIcon className="ed" onClick={() => handleUpdate(item)} />
+                    </td>
+                    <td className="deletez">
+                      <DeleteIcon
+                        className="de"
+                        onClick={() => {
+                          deleteNow(true);
+                          setStudentToDelete(item);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={6} className="dd">
+                    {mssg}
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={6} className="dd">
-                  {mssg}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
         <br />
       </div>
-      
       <Pagination totalPosts={students.length} postPerPage={postPerPage} paginate={paginate} />
       {modal && (
         <div className="modal">

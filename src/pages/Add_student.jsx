@@ -127,11 +127,12 @@ const Addstudent = () => {
           <label htmlFor="contact">Contact number</label>
           <br />
           <input
-            type="number"
+            type="tel"
             id="contact"
             name="contactNumber"
             max={10}
             className="handle-size"
+            maxLength={10}
             value={formValues.contactNumber}
             onChange={handleSubmit}
           />
@@ -155,7 +156,7 @@ const Addstudent = () => {
             <button className="button-width" onClick={handleSubmits}>
               Add
             </button>
-            <button className="button-color" onClick={handleGoBack}>
+            <button className="button-color" onClick={() => navigate('/pages')}>
               Cancel
             </button>
           </div>

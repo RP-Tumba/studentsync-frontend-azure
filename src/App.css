@@ -4,12 +4,16 @@
 }
 
 .update-msg {
-  background-color: green;
+  background-color:#EBF9DA;
   padding: 20px;
-  color: white;
+  color: #004b2f;
   font-size: 30px;
+  border-radius: 5px;
 }
 
 .update-none {
   display: none;
+}
+.main-content{
+  margin-top: 7%;
 }
