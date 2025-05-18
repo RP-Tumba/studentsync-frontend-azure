@@ -47,16 +47,33 @@ const FooterPart = () => {
             </div>
           </div>
           <div className="third-all-paragraph">
-            <h4 className="sacial-container">Scoil Media</h4>
+            <h4 className="sacial-container">Social Media</h4>
             <div className="icon-container">
               <span className="all-icon">
-               <Link to="http://www.facebook.com/"  className='ico' target='_blank'> <FmdFacebookIcon /></Link>
+                <Link to="http://www.facebook.com/" className="ico" target="_blank">
+                  {' '}
+                  <FmdFacebookIcon />
+                </Link>
               </span>
               <span className="all-icon">
-               <Link to="http://www.youtube.com/@rwandapolytechnic5110"  target='_blank' className='ico'> <FmdYouTubeIcon /></Link>
+                <Link
+                  to="http://www.youtube.com/@rwandapolytechnic5110"
+                  target="_blank"
+                  className="ico"
+                >
+                  {' '}
+                  <FmdYouTubeIcon />
+                </Link>
               </span>
               <span className="all-icon">
-               <Link to="https://www.instagram.com/rp_tumba_college?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className='ico' target="_blank"> <FmdInstagramIcon /></Link>{' '}
+                <Link
+                  to="https://www.instagram.com/rp_tumba_college?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  className="ico"
+                  target="_blank"
+                >
+                  {' '}
+                  <FmdInstagramIcon />
+                </Link>{' '}
               </span>
             </div>
           </div>

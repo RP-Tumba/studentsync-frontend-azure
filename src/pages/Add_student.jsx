@@ -22,22 +22,20 @@ const Addstudent = () => {
 
   const handleSubmits = async e => {
     e.preventDefault();
-    
+
     try {
       const result = await studentService.createStudent(formValues);
       if (result.success) {
-        alert('student added')
-        navigate(-1)
-        ; // redirect or update UI
+        alert('student added');
+        navigate(-1); // redirect or update UI
       } else {
-        alert('some inputs already exists');
+        alert('Make sure that all inputs are filled and are unique');
       }
     } catch (err) {
       console.error('Submission failed:', err);
       alert('Submission failed');
     }
   };
-
   return (
     <div className="add-color">
       <form className="handle-full-color">
@@ -49,7 +47,6 @@ const Addstudent = () => {
           </div>
           <p>Add new student</p>
         </div>
-
         <div className="form-body">
           <div className="handle-display">
             <div>
@@ -74,7 +71,6 @@ const Addstudent = () => {
                 className="handle-size-form"
                 value={formValues.lastName}
                 onChange={handleSubmit}
-                
               />
             </div>
             <div>
@@ -103,7 +99,6 @@ const Addstudent = () => {
             </div>
           </div>
           <br />
-
           <label htmlFor="email">Email</label>
           <br />
           <input
@@ -116,7 +111,6 @@ const Addstudent = () => {
           />
           <br />
           <br />
-
           <label htmlFor="contact">Contact number</label>
           <br />
           <input
@@ -130,7 +124,6 @@ const Addstudent = () => {
           />
           <br />
           <br />
-
           <label htmlFor="enrollDate">Enrollment date</label>
           <br />
           <input
@@ -143,9 +136,10 @@ const Addstudent = () => {
           />
           <br />
           <br />
-
           <div className="handle-button">
-            <button className="button-width" onClick={handleSubmits}>Add</button>
+            <button className="button-width" onClick={handleSubmits}>
+              Add
+            </button>
             <button className="button-color" onClick={handleGoBack}>
               Cancel
             </button>

@@ -23,7 +23,7 @@
 
 .add-color {
   /* background-image: linear-gradient(to  right, rgb(244, 240, 240),red); */
-  
+
   /* padding-top: 100px; */
   justify-items: center;
   justify-content: center;
@@ -50,9 +50,7 @@
   padding: 10px;
   border: none;
   border-radius: 10px;
-  
 }
-
 
 .button-color {
   width: 130px;
@@ -75,27 +73,24 @@
   background-color: #d7ebbe;
   width: 100%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   padding: 40px 0;
   gap: 5px;
   border-radius: 10px;
-   color: #004B2F;
+  color: #004b2f;
   font-weight: bold;
   font-size: 15px;
- 
 }
 
 .form-body {
   padding: 30px 50px;
 }
 
-
-.date-birth{
-    width: 163px;
+.date-birth {
+  width: 163px;
 }
-.handle-picture{
-
+.handle-picture {
   width: 40px;
   height: 40px;
 }

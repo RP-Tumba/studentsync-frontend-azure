@@ -11,19 +11,18 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Addstudent from './Add_student.jsx';
-import Pagination from './pagination.jsx'
+import Pagination from './pagination.jsx';
 
-  
 const StudentList = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { students, fetchStudents, loading, error } = useStudentStore();
-  const [currentPage,setCurrentPage] = useState(1); 
-  const [postPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(7);
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage;
-  const currentPost = students.slice(firstPostIndex,lastPostIndex);
-  
+  const currentPost = students.slice(firstPostIndex, lastPostIndex);
+
   const myMsg = location.state?.myMsg;
 
   const [search, setSearch] = useState('');
@@ -34,7 +33,7 @@ const StudentList = () => {
   useEffect(() => {
     fetchStudents();
   }, [fetchStudents]);
- 
+
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -48,21 +47,20 @@ const StudentList = () => {
   };
 
   // DELETE FUNCTION DONE
-  const [isDeleted,setIsDeleted] = useState(false);
-  const [studentToDelete,setStudentToDelete] = useState(null);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [studentToDelete, setStudentToDelete] = useState(null);
 
   const deleteNow = () => {
     setIsDeleted(!isDeleted);
-  }
+  };
   const handleDelete = async studentId => {
     try {
+      const data = await studentService.deleteStudent(studentId);
 
-        const data = await studentService.deleteStudent(studentId);
-      
       if (data) {
         console.log(data);
         window.location.reload();
-        alert('delete successfully')
+        alert('delete successfully');
       } else {
         alert('Something went wrong');
       }
@@ -71,7 +69,7 @@ const StudentList = () => {
       alert('Failed to delete student');
     }
   };
-  
+
   const filteredStudents = currentPost.filter(student => {
     const query = search.trim().toLowerCase();
     return (
@@ -89,9 +87,11 @@ const StudentList = () => {
   }, [myMsg, navigate, location]);
   if (loading)
     return (
-      <center> <div className="loading">
-        <RefreshIcon />
-      </div>
+      <center>
+        {' '}
+        <div className="loading">
+          <RefreshIcon />
+        </div>
       </center>
     );
   const refresh = () => {
@@ -113,7 +113,7 @@ const StudentList = () => {
     );
 
   const mssg = 'NO RESULT FOUND ';
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -123,29 +123,37 @@ const StudentList = () => {
         <p className="update-none">{msgDisplay}</p>
       )}
 
-        {/* <div className='delete'> */}
-        <div className={isDeleted ?'delete' : 'now'}>
-          <h2>Are you Sure you want to remove this student?</h2><br />
-        <div className='joy'>
-
-          <button className='cancel' onClick={()=>{
-            deleteNow(false);
-            setStudentToDelete(null);
-          }}>Cancel</button>
-          <button className='yes' onClick={() =>{
-            handleDelete(studentToDelete.studentId);
-            deleteNow(false);
-            setStudentToDelete(item);
-          }}>Yes</button>
-          </div>
-          
+      {/* <div className='delete'> */}
+      <div className={isDeleted ? 'delete' : 'now'}>
+        <h2>Are you Sure you want to remove this student?</h2>
+        <br />
+        <div className="joy">
+          <button
+            className="cancel"
+            onClick={() => {
+              deleteNow(false);
+              setStudentToDelete(null);
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            className="yes"
+            onClick={() => {
+              handleDelete(studentToDelete.studentId);
+              deleteNow(false);
+              setStudentToDelete(item);
+            }}
+          >
+            Yes
+          </button>
         </div>
+      </div>
 
       <div className="container">
-
         <div className="top">
           <h1>All Students</h1>
-          
+
           <div className="leftbar">
             <section className="search">
               <SearchIcon className="ii" />
@@ -196,12 +204,13 @@ const StudentList = () => {
                     <EditIcon className="ed" onClick={() => handleUpdate(item)} />
                   </td>
                   <td>
-                    <DeleteIcon className="de" onClick={()=>{ 
-                      
-                      deleteNow(true);
-                      setStudentToDelete(item);
-                      
-                      }}/>
+                    <DeleteIcon
+                      className="de"
+                      onClick={() => {
+                        deleteNow(true);
+                        setStudentToDelete(item);
+                      }}
+                    />
                   </td>
                 </tr>
               ))
@@ -213,17 +222,16 @@ const StudentList = () => {
               </tr>
             )}
           </tbody>
-        </table><br />
+        </table>
+        <br />
       </div>
-            <Pagination  totalPosts={students.length} postPerPage ={postPerPage} paginate={paginate} />
+      <Pagination totalPosts={students.length} postPerPage={postPerPage} paginate={paginate} />
       {modal && (
         <div className="modal">
           <div className="overlay">
             <Addstudent />
           </div>
-
         </div>
-
       )}
     </>
   );

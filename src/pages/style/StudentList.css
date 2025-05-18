@@ -53,19 +53,18 @@ h1 {
 
 .add {
   background-color: #83c727;
-padding-bottom: 30px;
-display: flex;
-font-weight: bold;
-text-align: center;
-padding-top: 22px;
+  padding-bottom: 30px;
+  display: flex;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 22px;
   border-radius: 12px;
   justify-items: center;
   width: 180px;
   border: none;
   height: 52px;
   padding: 22px;
-    color: white;
- 
+  color: white;
 }
 
 .thead {
@@ -90,13 +89,10 @@ h1 {
 .but1 {
   display: flex;
   align-items: center;
- 
+
   padding: 10px 30px;
   border: none;
-  
 }
-
-
 
 @media (max-width: 1000px) {
   .leftbar {
@@ -124,7 +120,7 @@ h1 {
     width: 70%;
   }
 
-  .but1{
+  .but1 {
     padding: 10px 10px;
   }
 }
@@ -154,14 +150,14 @@ h1 {
   }
 }
 .btn-modal {
-    padding: 10px 20px;
-    display: block;
-    margin: 100px auto 0;
-    font-size: 18px;
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
 }
-.modal-content{
-  border:1px solid black;
-  width:30%;
+.modal-content {
+  border: 1px solid black;
+  width: 30%;
   position: absolute;
   right: 30rem;
   top: 4rem;
@@ -169,41 +165,39 @@ h1 {
   border-radius: 12px;
   background-color: aquamarine;
   box-shadow: inset;
-
 }
 
-.modal-content input{
-position: absolute;
-left: 10em;
-padding: 10px 10px;
-margin-top: 62px;
-border-radius: 8px;
-width: 50%;
-border: none;
-
+.modal-content input {
+  position: absolute;
+  left: 10em;
+  padding: 10px 10px;
+  margin-top: 62px;
+  border-radius: 8px;
+  width: 50%;
+  border: none;
 }
- .modal, .overlay{
-left: 0;
-right: 0;
-bottom: 0;
-top: 0;
-width: 100vw;
-height: 100vh;
-position: fixed;
+.modal,
+.overlay {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
 }
 
-.overlay{
+.overlay {
   background-color: rgba(49, 49, 49, 0.8);
 }
-.close-modal{
-  
+.close-modal {
   top: 108px;
   right: 620px;
   padding: 5px 10px;
   background-color: red;
 }
 
-.proPic{
+.proPic {
   width: 14%;
   padding-top: 10px;
   font-weight: 900;
@@ -215,41 +209,40 @@ position: fixed;
   border: 2px solid rgba(33, 32, 32, 0.8);
   float: left;
 }
-.ed{
+.ed {
   color: green;
   cursor: pointer;
 }
-.de{
+.de {
   color: red;
   cursor: pointer;
 }
-.pag{
+.pag {
   width: 2%;
   padding: 5px;
   height: 2%;
   color: black;
-  margin-right: 8px; 
+  margin-right: 8px;
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-  
 }
-.pag:hover{
+.pag:hover {
   background-color: yellowgreen;
   color: white;
 }
-.connection--error{
+.connection--error {
   text-align: center;
   font-weight: bold;
 }
-.connection--error .retry{
+.connection--error .retry {
   color: #ebf3e1;
   font-weight: bold;
   width: 200px;
   height: 50px;
   font-size: 20px;
 }
-.delete{
+.delete {
   background-color: darkslategray;
   width: 30%;
   height: 200px;
@@ -264,13 +257,12 @@ position: fixed;
   margin-right: 30%;
   margin-top: 10%;
   position: absolute;
-  
 }
-.now{
+.now {
   /* display: flex; */
   display: none;
 }
-.cancel{
+.cancel {
   background-color: tomato;
   color: aliceblue;
   font-weight: bold;
@@ -279,7 +271,7 @@ position: fixed;
   font-size: 20px;
   height: 50px;
 }
-.yes{
+.yes {
   background-color: #83c727;
   color: aliceblue;
   font-weight: bold;
@@ -288,10 +280,9 @@ position: fixed;
   font-size: 20px;
   height: 50px;
 }
-.joy{
+.joy {
   display: flex;
   width: 100%;
- gap: 30px;
- justify-content: center;
-  
+  gap: 30px;
+  justify-content: center;
 }

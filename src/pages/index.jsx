@@ -24,7 +24,9 @@ const LandingPage = () => {
             </div>
             <div className="buttons">
               <div className="btn-f">
-                <button className="btn bg-white">Learn More</button>
+                <Link to="https://www.iprctumba.rp.ac.rw/" target="_blank">
+                  <button className="btn bg-white">Learn More</button>
+                </Link>
                 <Link to="/pages">
                   <button className="btn bg-green">All Students</button>
                 </Link>

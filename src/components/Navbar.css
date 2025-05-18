@@ -1,158 +1,156 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 60px 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px 10px;
 }
 
 .icon {
-    display: none;
+  display: none;
 }
 
 .logo {
-    color: #004B2F;
-    font-size: 22px;
-    border: none;
+  color: #004b2f;
+  font-size: 22px;
+  border: none;
 }
-.no-line{
-    text-decoration: none;
-    color: inherit;
+.no-line {
+  text-decoration: none;
+  color: inherit;
 }
-.logo img{
-    width: 23%;
-    border-radius: 12px;
+.logo img {
+  width: 23%;
+  border-radius: 12px;
 }
 .links {
-    color: #83C727;
-    font-size: 22px;
+  color: #83c727;
+  font-size: 22px;
 }
 
 .links .button-1 {
-
-    color: #686868;
-    padding: 12px;
-    width: 130px;
-    border-radius: 8px;
-    /* height: 22px; */
-    border: none;
-    background: none;
-    font-weight: bold;
-
+  color: #686868;
+  padding: 12px;
+  width: 130px;
+  border-radius: 8px;
+  /* height: 22px; */
+  border: none;
+  background: none;
+  font-weight: bold;
 }
 
 .links .button-2 {
-    color: #83C727;
-    padding: 12px;
-    width: 130px;
-    border-radius: 8px;
-    /* height: 22px; */
-    border: 2px solid #83C727;
-    background: none;
-    outline: none;
-    font-weight: bold;
+  color: #83c727;
+  padding: 12px;
+  width: 130px;
+  border-radius: 8px;
+  /* height: 22px; */
+  border: 2px solid #83c727;
+  background: none;
+  outline: none;
+  font-weight: bold;
 }
 
 .links .button-3 {
-    color: #83C727;
-    padding: 12px;
-    width: 130px;
-    border-radius: 8px;
-    outline: none;
-    /* height: 22px; */
-    border: none;
-    background: none;
-    font-weight: bold;
+  color: #83c727;
+  padding: 12px;
+  width: 130px;
+  border-radius: 8px;
+  outline: none;
+  /* height: 22px; */
+  border: none;
+  background: none;
+  font-weight: bold;
 }
 
 .links button:hover {
-    color: #004B2F;
+  color: #004b2f;
 }
 
-@media screen and (max-width:720px) {
-    .links {
-        display: none;
-    }
+@media screen and (max-width: 720px) {
+  .links {
+    display: none;
+  }
 
-    .links.menu {
-        display: inline-block;
-        position: absolute;
-        width: 130px;
-        border-radius: 12px;
-        margin-top: 37px;
-        backdrop-filter: blur(40px);
-        right: 18px;
-    }
+  .links.menu {
+    display: inline-block;
+    position: absolute;
+    width: 130px;
+    border-radius: 12px;
+    margin-top: 37px;
+    backdrop-filter: blur(40px);
+    right: 18px;
+  }
 
-    .icon {
-        display: contents;
-        color: #83C727;
-        zoom: 150%;
-    }
+  .icon {
+    display: contents;
+    color: #83c727;
+    zoom: 150%;
+  }
 
-    .icon:hover {
-        color: #004B2F;
-    }
+  .icon:hover {
+    color: #004b2f;
+  }
 }
 
 .loading {
-    display: grid;
-    justify-content: center;
-    margin-top: 80px;
-    color: #83C727;
-    zoom: 200%;
-    animation: 0.7s loadings infinite;
-    width: 3%;
-    font-size: large;
-    border-radius: 12px;
+  display: grid;
+  justify-content: center;
+  margin-top: 80px;
+  color: #83c727;
+  zoom: 200%;
+  animation: 0.7s loadings infinite;
+  width: 3%;
+  font-size: large;
+  border-radius: 12px;
 }
 
 @keyframes loadings {
-    10% {
-        transition: 0.2s;
-        rotate: 36deg;
-    }
+  10% {
+    transition: 0.2s;
+    rotate: 36deg;
+  }
 
-    20% {
-        rotate: 72deg;
-        transition: 0.2s;
-    }
+  20% {
+    rotate: 72deg;
+    transition: 0.2s;
+  }
 
-    30% {
-        rotate: 108deg;
-        transition: 0.2s;
-    }
+  30% {
+    rotate: 108deg;
+    transition: 0.2s;
+  }
 
-    40% {
-        rotate: 144deg;
-        transition: 0.2s;
-    }
+  40% {
+    rotate: 144deg;
+    transition: 0.2s;
+  }
 
-    50% {
-        rotate: 180deg;
-        transition: 0.2s;
-    }
+  50% {
+    rotate: 180deg;
+    transition: 0.2s;
+  }
 
-    60% {
-        rotate: 216deg;
-        transition: 0.2s;
-    }
+  60% {
+    rotate: 216deg;
+    transition: 0.2s;
+  }
 
-    70% {
-        rotate: 252deg; 
-        transition: 0.2s;
-    }
+  70% {
+    rotate: 252deg;
+    transition: 0.2s;
+  }
 
-    80% {
-        rotate: 288deg;
-        transition: 0.2s;
-    }
+  80% {
+    rotate: 288deg;
+    transition: 0.2s;
+  }
 
-    90% {
-        rotate: 324deg;
-        transition: 0.2s;
-    }
+  90% {
+    rotate: 324deg;
+    transition: 0.2s;
+  }
 
-    100% {
-        rotate: 360deg;
-        transition: 0.2s;
-    }
+  100% {
+    rotate: 360deg;
+    transition: 0.2s;
+  }
 }
