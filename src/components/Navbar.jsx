@@ -10,7 +10,6 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
   const navigate = useNavigate();
-  const ur = './public/index.png';
   return (
     <nav>
       <link rel="icon" href={logo} />

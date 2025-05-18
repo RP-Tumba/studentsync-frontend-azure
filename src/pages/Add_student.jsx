@@ -4,9 +4,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 const Addstudent = () => {
   const navigate = useNavigate();
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+  
   const location = useLocation();
   const studentData = location.state?.studentData;
 
@@ -52,8 +50,7 @@ const Addstudent = () => {
       <form className="handle-full-color">
         <div className="final-title">
           <div className="handle-title">
-            {/* <PanoramaPhotosphereIcon /> */}
-            <img src="public/title.png" className="handle-picture" alt="wait" />
+            <img src="./src/assets/title.png" className="handle-picture" alt="wait" />
             <p className="set-position">STUDENTSYNC</p>
           </div>
           <p>Add new student</p>

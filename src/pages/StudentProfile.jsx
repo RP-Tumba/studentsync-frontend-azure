@@ -6,6 +6,7 @@ import { studentService } from '../lib/api';
 import WestIcon from '@mui/icons-material/West';
 
 const StudentProfileForm = () => {
+
   const navigate = useNavigate();
   const location = useLocation();
   const studentData = location.state?.studentData;
@@ -44,8 +45,7 @@ const StudentProfileForm = () => {
   const handleGoBack = () => {
     navigate(-1);
   };
-  const name1 = studentData.firstName;
-  const name2 = studentData.lastName;
+
   const getTimeAgo = dateString => {
     if (!dateString) return '';
     const now = new Date();
@@ -84,12 +84,11 @@ const StudentProfileForm = () => {
           <div className="content">
             <div className="part3">
               <div className="details">
-                {/* profile image */}
                 <input type="file" id="imageInput" accept="image/*" />
                 <label htmlFor="Profile" id="imageLabel">
                   <div className="img">
-                    {name1.charAt(0).toUpperCase()}
-                    {name2.charAt(0).toUpperCase()}
+                    {studentData.firstName.charAt(0).toUpperCase()}
+                    {studentData.lastName.charAt(0).toUpperCase()}
                   </div>
                 </label>
                 <strong>

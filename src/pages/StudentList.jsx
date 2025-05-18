@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import '../components/Navbar.css';
-// import SyncIcon from '@mui/icons-material/Sync';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import './style/StudentList.css';
 import useStudentStore from '../store/studentStore';
@@ -22,14 +21,15 @@ const StudentList = () => {
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage;
   const currentPost = students.slice(firstPostIndex, lastPostIndex);
-
-  const myMsg = location.state?.myMsg;
-
   const [search, setSearch] = useState('');
   const [modal, setModal] = useState(false);
-
   const [msgDisplay, setMessageDisplay] = useState(true);
+  const [isDeleted, setIsDeleted] = useState(false);
+   const [studentToDelete, setStudentToDelete] = useState(null);
+   const mssg = 'NO RESULT FOUND ';
+   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  const myMsg = location.state?.myMsg;
   useEffect(() => {
     fetchStudents();
   }, [fetchStudents]);
@@ -37,26 +37,21 @@ const StudentList = () => {
   const toggleModal = () => {
     setModal(!modal);
   };
-
   const handleChange = e => {
     setSearch(e.target.value);
   };
-
   const handleUpdate = data => {
     navigate('/student-profile', { state: { studentData: data } });
   };
-
- const [isDeleted, setIsDeleted] = useState(false);
-  const [studentToDelete, setStudentToDelete] = useState(null);
-
   const deleteNow = () => {
     setIsDeleted(!isDeleted);
   };
-  
+  const refresh = () => {
+    window.location.reload();
+  };
   const handleDelete = async studentId => {
     try {
       const data = await studentService.deleteStudent(studentId);
-
       if (data) {
         console.log(data);
         window.location.reload();
@@ -94,9 +89,7 @@ const StudentList = () => {
         </div>
       </center>
     );
-  const refresh = () => {
-    window.location.reload();
-  };
+  
   if (error)
     return (
       <div className="connection--error">
@@ -112,8 +105,6 @@ const StudentList = () => {
       </div>
     );
 
-  const mssg = 'NO RESULT FOUND ';
-  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <>
@@ -123,7 +114,6 @@ const StudentList = () => {
         <p className="update-none">{msgDisplay}</p>
       )}
 
-      {/* <div className='delete'> */}
       <div className={isDeleted ? 'delete' : 'now'}>
         <h2>Are you Sure you want to remove this student?</h2>
         <br />
@@ -152,7 +142,6 @@ const StudentList = () => {
       <div className="container">
         <div className="top">
           <h1>All Students</h1>
-          {/* Delete Conf.. */}
 
           <div className="leftbar">
             <section className="search">
