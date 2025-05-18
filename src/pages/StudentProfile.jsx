@@ -3,6 +3,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import './styles/StudentProfile.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { studentService } from '../lib/api';
+import WestIcon from '@mui/icons-material/West';
 
 const StudentProfileForm = () => {
   const navigate = useNavigate();
@@ -62,10 +63,12 @@ const StudentProfileForm = () => {
 
     const diffMonths = Math.floor(diffDays / 30);
     if (diffMonths === 1) return '1 month ago';
-    return `${diffMonths} months ago`;
-    // const year = Math.floor(diffMonths/12)
-    // if(year === 1)return ('1 year ago')
-    //   if(year <= 4) return ('years ago')
+   if(diffMonths > 1) return `${diffMonths} months ago`;
+    const year = Math.floor(diffMonths/12)
+    if(year === 1) return ('1 year ago')
+      return (`${year}years ago`);
+    
+      
   };
   return (
     <>
@@ -203,7 +206,7 @@ const StudentProfileForm = () => {
               </div>
 
               <div className="goback">
-                <button onClick={handleGoBack}>Go back</button>
+                <button onClick={handleGoBack}><WestIcon /> Go back</button>
               </div>
             </div>
           </div>

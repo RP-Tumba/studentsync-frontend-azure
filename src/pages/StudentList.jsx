@@ -46,13 +46,14 @@ const StudentList = () => {
     navigate('/student-profile', { state: { studentData: data } });
   };
 
-  // DELETE FUNCTION DONE
+
   const [isDeleted, setIsDeleted] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState(null);
 
   const deleteNow = () => {
     setIsDeleted(!isDeleted);
   };
+  
   const handleDelete = async studentId => {
     try {
       const data = await studentService.deleteStudent(studentId);
@@ -142,7 +143,7 @@ const StudentList = () => {
             onClick={() => {
               handleDelete(studentToDelete.studentId);
               deleteNow(false);
-              setStudentToDelete(item);
+              setStudentToDelete(null);
             }}
           >
             Yes
@@ -225,6 +226,7 @@ const StudentList = () => {
         </table>
         <br />
       </div>
+      
       <Pagination totalPosts={students.length} postPerPage={postPerPage} paginate={paginate} />
       {modal && (
         <div className="modal">

@@ -14,20 +14,31 @@ const Addstudent = () => {
 
   const handleSubmit = e => {
     const { name, value } = e.target;
-    setFormValues(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+             
+        setFormValues(prev => ({
+          ...prev,
+          [name]: value,
+        }));
+
   };
 
+    const newd = new Date().toISOString().split('T')[0];
   const handleSubmits = async e => {
     e.preventDefault();
-
     try {
+      if(formValues.contactNumber.length !== 10){
+        alert("contact number have to be exactly to 10");
+        return;
+      }
+
+      if(formValues.studentId.length !== 8){
+        alert('student id has to be 8 numbers');
+        return;
+      }
       const result = await studentService.createStudent(formValues);
       if (result.success) {
         alert('student added');
-        navigate(-1); // redirect or update UI
+        navigate('/');
       } else {
         alert('Make sure that all inputs are filled and are unique');
       }
@@ -80,6 +91,8 @@ const Addstudent = () => {
                 type="date"
                 id="dob"
                 name="dateOfBirth"
+                min="1990-01-01"
+                max="2007-01-01"
                 className="handle-size-form date-birth"
                 value={formValues.dob}
                 onChange={handleSubmit}
@@ -89,7 +102,7 @@ const Addstudent = () => {
               <label htmlFor="studentId">Student ID</label>
               <br />
               <input
-                type="number"
+                type="text"
                 id="studentId"
                 name="studentId"
                 className="handle-size-form"
@@ -117,7 +130,7 @@ const Addstudent = () => {
             type="number"
             id="contact"
             name="contactNumber"
-            maxLength={10}
+            max={10}
             className="handle-size"
             value={formValues.contactNumber}
             onChange={handleSubmit}
@@ -130,6 +143,8 @@ const Addstudent = () => {
             type="date"
             id="enrollDate"
             name="enrollmentDate"
+            min="2024-05-08"
+            max={newd}
             className="handle-size"
             value={formValues.enrollmentDate}
             onChange={handleSubmit}
