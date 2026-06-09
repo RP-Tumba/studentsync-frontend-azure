@@ -29,7 +29,7 @@ const snakeToCamel = str => {
  * @param {Object} obj - The object with snake_case keys
  * @return {Object} A new object with camelCase keys
  */
-const objectToCamelCase = obj => {
+export const objectToCamelCase = obj => {
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
@@ -165,7 +165,6 @@ export const studentService = {
       };
     }
   },
-
   deleteStudent: async id => {
     try {
       const { error } = await supabase.from('students').delete().eq('student_id', id);
